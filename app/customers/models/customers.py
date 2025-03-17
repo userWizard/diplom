@@ -1,7 +1,7 @@
 from django.db import models
 
 from app.common.models import TimeBaseModel
-from app.customers.entities.customers import Customer
+from app.customers.entities.customers import Customer as CustomersEntity
 
 class Customers(TimeBaseModel):
     '''Customers model'''
@@ -21,7 +21,7 @@ class Customers(TimeBaseModel):
     )
     password = models.CharField(
         verbose_name='Пароль',
-        max_length=30,
+        max_length=128,
         blank=False,
         null=False,
     )
@@ -31,10 +31,10 @@ class Customers(TimeBaseModel):
         verbose_name_plural = 'Клиенты'
 
     def __str__(self) -> str:
-        return f'{self.firstname}:{self.secondname}:{self.email}:{self.phone_number}'
+        return f'{self.email}:{self.phone_number}'
     
-    def to_entity(self) -> Customer:
-        return Customer(
+    def to_entity(self) -> CustomersEntity:
+        return CustomersEntity(
             id=self.pk,
             name=self.name,
             email=self.email,

@@ -8,9 +8,6 @@ from dataclasses import dataclass
 from app.customers.services.customers import BaseCustomerService
 from app.customers.entities.customers import Customer
 
-from abc import ABC, abstractmethod
-from app.customers.entities.customers import Customer
-
 class BaseAuthService(ABC):
     customer_service: BaseCustomerService
     @abstractmethod
@@ -19,7 +16,7 @@ class BaseAuthService(ABC):
         ...
 
     @abstractmethod
-    async def logout(self, user_id: int) -> None:
+    async def delete_account(self, user_id: int) -> None:
         """Выйти из системы."""
         ...
 
