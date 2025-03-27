@@ -1,7 +1,7 @@
-from app.customers.services.customers import BaseCustomerService
-from app.customers.services.auth import BaseAuthService
-from app.customers.entities.customers import Customer as CustomersEntity
-from app.customers.models.customers import Customer as CustomersModels
+from app.customers.entities.services import BaseCustomerService
+from app.customers.entities.use_case import BaseAuthService
+from app.customers.entities.entities import Customer as CustomersEntity
+from app.customers.models import Customers as CustomersModels
 from app.customers.execeptions.customers import CustomerByIdInvalid
 
 class ORMCustomerRepository(BaseCustomerService):
@@ -15,6 +15,7 @@ class ORMCustomerRepository(BaseCustomerService):
         )
         
         return customer.to_entity()
+
     def get_by_id(self, user_id: int) -> CustomersEntity:
         try:
             customer = CustomersModels.object.get(user_id=user_id)

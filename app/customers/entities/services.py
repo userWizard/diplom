@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from app.customers.entities.customers import Customer as CustomerEntity
+from app.customers.entities.entities import Customer as CustomerEntity
 
 class BaseCustomerService(ABC):
     @abstractmethod

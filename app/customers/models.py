@@ -1,7 +1,7 @@
 from django.db import models
 
 from app.common.models import TimeBaseModel
-from app.customers.entities.customers import Customer as CustomersEntity
+from app.customers.entities.entities import Customer as CustomersEntity
 
 class Customers(TimeBaseModel):
     '''Customers model'''
