@@ -1,5 +1,7 @@
 from ninja import Schema
 
+from datetime import datetime
+
 from app.customers.entities.entities import Customer as CustomerEntity
 
 
@@ -16,6 +18,7 @@ class GetOrCreateOutSchema(Schema):
     email: str
     phone_number: str
     password: str
+    created_at: datetime
 
     @classmethod
     def from_entity(cls, customer: CustomerEntity) -> 'GetOrCreateOutSchema':

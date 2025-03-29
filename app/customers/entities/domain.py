@@ -2,7 +2,7 @@ from app.customers.entities.services import BaseCustomerService
 from app.customers.entities.use_case import BaseAuthService
 from app.customers.entities.entities import Customer as CustomerEntity
 from app.customers.models import Customers as CustomerModels
-from app.customers.execeptions.customers import CustomerByIdInvalid
+from app.customers.execeptions.customers import CustomerByIdInvalid, CustomerUpdateInvalid
 
 
 class ORMCustomerRepository(BaseCustomerService):
@@ -29,11 +29,8 @@ class ORMCustomerRepository(BaseCustomerService):
         try:
             db_customer = CustomerModels.objects.filter(user_id=user_id)
         except CustomerModels.DoesNotExist:
-            raise None
-        
+            raise CustomerByIdInvalid(user_id=user_id)
         db_customer.delete()
-        
-        return db_customer.to_entity()
 
     def update_customer(self, customer: CustomerEntity):
         db_customer = CustomerModels.objects.filter(id=customer.id).first()
@@ -41,6 +38,5 @@ class ORMCustomerRepository(BaseCustomerService):
             db_customer.email = customer.email
             db_customer.password = customer.password
             db_customer.save()
-            db_customer.to_entity()
-
-        return None
+            return db_customer.to_entity()
+        raise CustomerUpdateInvalid(user_id=customer.id)

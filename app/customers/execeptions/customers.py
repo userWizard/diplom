@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from exceptions import ServiceException
+from app.common.exceptions import ServiceException
 
 @dataclass(eq=False)
 class CustomerByIdInvalid(ServiceException):
