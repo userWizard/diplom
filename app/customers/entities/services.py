@@ -1,7 +1,9 @@
 from abc import ABC, abstractmethod
 from app.customers.entities.entities import Customer as CustomerEntity
 
+
 class BaseCustomerService(ABC):
+
     @abstractmethod
     async def get_or_create(self, customer: CustomerEntity) -> CustomerEntity:
         """Создать или получить пользователя."""
@@ -13,16 +15,11 @@ class BaseCustomerService(ABC):
         ...
 
     @abstractmethod
-    async def update_customer(self, email: str, password: str) -> CustomerEntity:
-        """Обновить данные пользователя."""
+    def delete_customer(self, user_id: int) -> CustomerEntity:
+        """Удалить аккаунт."""
         ...
     
     @abstractmethod
-    def authorize(self, customer: CustomerEntity) -> CustomerEntity:
-        """Авторизовать пользователя."""
-        ...
-    
-    @abstractmethod
-    def delete_account(self, user_id: int) -> CustomerEntity:
-        """Выйти из системы."""
+    def update_customer(self, customer: CustomerEntity) -> CustomerEntity:
+        """Изменить данные из аккаунта."""
         ...

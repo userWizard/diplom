@@ -2,7 +2,7 @@ from django.http import HttpRequest
 from django.urls import path
 from ninja import NinjaAPI
 
-from app.application.shemas import PingResponseSchema
+from app.application.schemas import PingResponseSchema
 from app.application.api.urls import router as v1_router
 
 api = NinjaAPI()

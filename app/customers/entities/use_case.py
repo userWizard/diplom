@@ -3,9 +3,7 @@ from abc import (
     abstractmethod,
 )
 
-from dataclasses import dataclass
-
-from app.customers.services.customers import BaseCustomerService
+from app.customers.entities.services import BaseCustomerService
 from app.customers.entities.entities import Customer
 
 class BaseAuthService(ABC):
