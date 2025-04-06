@@ -1,0 +1,102 @@
+[
+    {
+      "name": "Иван Иванов",
+      "email": "ivan@example.com",
+      "phone_number": "+79161234567",
+      "password": "SecurePass123!"
+    },
+    {
+      "name": "Мария Петрова",
+      "email": "maria@example.com",
+      "phone_number": "+79031234567",
+      "password": "MariaPass2023"
+    },
+    {
+      "name": "Алексей Смирнов",
+      "email": "alex@example.com",
+      "phone_number": "+79261234567",
+      "password": "Alex@12345"
+    },
+    {
+      "name": "Екатерина Волкова",
+      "email": "ekaterina@example.com",
+      "phone_number": "+79111234567",
+      "password": "Katya!2023"
+    },
+    {
+      "name": "Дмитрий Козлов",
+      "email": "dmitry@example.com",
+      "phone_number": "+79091234567",
+      "password": "Dima#Secure1"
+    },
+    {
+      "name": "Ольга Новикова",
+      "email": "olga@example.com",
+      "phone_number": "+79021234567",
+      "password": "OlgaPass123"
+    },
+    {
+      "name": "Анна Морозова",
+      "email": "anna@example.com",
+      "phone_number": "+79131234567",
+      "password": "AnnaMoroz!23"
+    },
+    {
+      "name": "Сергей Павлов",
+      "email": "sergey@example.com",
+      "phone_number": "+79081234567",
+      "password": "Sergey@Pavlov"
+    },
+    {
+      "name": "Наталья Соколова",
+      "email": "natalia@example.com",
+      "phone_number": "+79151234567",
+      "password": "NataSokol2023"
+    },
+    {
+      "name": "Андрей Лебедев",
+      "email": "andrey@example.com",
+      "phone_number": "+79041234567",
+      "password": "Lebedev!123"
+    },
+    {
+      "email": "ivan@example.com",
+      "password": "SecurePass123!"
+    },
+    {
+      "email": "maria@example.com",
+      "password": "MariaPass2023"
+    },
+    {
+      "email": "alex@example.com",
+      "password": "Alex@12345"
+    },
+    {
+      "email": "ekaterina@example.com",
+      "password": "Katya!2023"
+    },
+    {
+      "email": "dmitry@example.com",
+      "password": "Dima#Secure1"
+    },
+    {
+      "email": "wrong@example.com",
+      "password": "InvalidPass"
+    },
+    {
+      "email": "",
+      "password": "EmptyEmail"
+    },
+    {
+      "email": "noatsign.com",
+      "password": "WrongFormat"
+    },
+    {
+      "email": "olga@example.com",
+      "password": ""
+    },
+    {
+      "email": "anna@example.com",
+      "password": "short"
+    }
+  ]

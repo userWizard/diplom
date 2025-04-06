@@ -16,3 +16,11 @@ class CustomerUpdateInvalid(ServiceException):
     @property
     def message(self):
         return 'Customer with id {user_id} not found'
+
+@dataclass(eq=False)
+class CustomerAuthorization(ServiceException):
+    message: str
+
+    @property
+    def message(self):
+        return self.message

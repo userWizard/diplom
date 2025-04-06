@@ -1,11 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 from app.common.models import TimeBaseModel
-from app.customers.entities.entities import Customer as CustomersEntity
 
-class Customers(TimeBaseModel):
+class Customers(AbstractUser, TimeBaseModel):
     '''Customers model'''
-    name = models.CharField(
+    username = models.CharField(
         verbose_name='Имя',
         max_length=90,
     )
@@ -25,21 +25,13 @@ class Customers(TimeBaseModel):
         blank=False,
         null=False,
     )
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['name', 'phone_number']
     
     class Meta:
-        verbose_name = 'Клиент'
-        verbose_name_plural = 'Клиенты'
+        ordering = ('username',)
+        verbose_name = 'Customer'
+        verbose_name_plural = 'Customers'
 
     def __str__(self) -> str:
         return f'{self.email}:{self.phone_number}'
-    
-    def to_entity(self) -> CustomersEntity:
-        return CustomersEntity(
-            id=self.pk,
-            name=self.name,
-            email=self.email,
-            phone_number=self.phone_number,
-            password=self.password,
-            created_at=self.created_at,
-        )
-    
