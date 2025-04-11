@@ -79,3 +79,30 @@ class MeOutShema(Schema):
     id: int
     name: str
     email: str
+
+
+class ChangePasswordSchema(Schema):
+    old_password: str
+    new_password: str
+    
+    @field_validator('old_password')
+    def old_password_valid(cls, v):
+        if not v:
+            raise ValueError('Старый пароль не может быть пустым')
+        return v
+    
+    @field_validator('new_password')
+    def new_password_valid(cls, v):
+        if not v:
+            raise ValueError('Новый пароль не может быть пустым')
+        if len(v) < 8:
+            raise ValueError('Новый пароль должен содержать минимум 8 символов')
+        
+        # Проверка на наличие хотя бы одной заглавной буквы
+        if not any(char.isupper() for char in v):
+            raise ValueError('Новый пароль должен содержать хотя бы одну заглавную букву')
+        
+        special_chars = r"[!@#$%^&*(),.?\":{}|<>]"
+        if not re.search(special_chars, v):
+            raise ValueError('Новый пароль должен содержать хотя бы один специальный символ: !@#$%^&*(),.?\":{}|<>')
+        return v

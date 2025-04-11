@@ -10,10 +10,11 @@ from ninja.errors import HttpError
 from django.contrib.auth import authenticate, login, logout
 
 from app.application.api.customers.schemas import (
-    RegisterSchema,
-    LoginSchema,
     AuthOutSchema,
+    ChangePasswordSchema,
+    LoginSchema,
     MeOutShema,
+    RegisterSchema
 )
 from app.customers.models import Customers
 
@@ -83,7 +84,9 @@ def login(request: HttpRequest, payload: LoginSchema) -> AuthOutSchema:
             cache.delete(cache_key)
             login(request, user)
             token = jwt.encode(
-                {'id': user.id, 'email': user.email},
+                {
+                    'id': user.id, 'email': user.email
+                },
                 algorithm='HS256'
             )
             logger.info(f"Successful login for user: {user.email}")
@@ -101,12 +104,60 @@ def login(request: HttpRequest, payload: LoginSchema) -> AuthOutSchema:
         raise HttpError(500, "Внутренняя ошибка сервера")
 
 
-@router.delete('/logot', auth=django_auth)
-def logout(request: HttpRequest):
-    logout(request)
-    return {"message": "Logged out"}
-
-
 @router.get('/me', response=MeOutShema, auth=django_auth)
-def me(request: HttpRequest):
-    return request.user
+def me(request: HttpRequest) -> MeOutShema:
+    try:
+        logger.info(f"User info requested for {request.user.email}")
+        return request.user
+    except Exception as e:
+        logger.error(f"Error in me endpoint: {str(e)}", exc_info=True)
+        raise HttpError(500, "Internal server error")
+
+
+@router.delete('/logout', auth=django_auth)
+def logout(request: HttpRequest):
+    try:
+        email = request.user.email
+        logout(request)
+        logger.info(f"User {email} logged out successfully")
+        return {"success": True, "message": "Logged out successfully"}
+    except Exception as e:
+        logger.error(f"Logout error: {str(e)}", exc_info=True)
+        raise HttpError(500, "Logout failed")
+
+
+@router.post('/change_password', response=AuthOutSchema, auth=django_auth)
+def change_password(request: HttpRequest, payload: ChangePasswordSchema) -> AuthOutSchema:
+    try:
+        user = request.user
+        logger.info(f"Password change requested for {user.email}")
+        
+        # Проверка старого пароля
+        if not user.check_password(payload.old_password):
+            logger.warning(f"Invalid old password for {user.email}")
+            raise HttpError(400, "Неверный текущий пароль")
+        
+        # Установка нового пароля
+        user.set_password(payload.new_password)
+        user.save()
+        
+        # Генерация нового токена
+        token = jwt.encode(
+            {
+                'id': user.id, 'email': user.email
+            },
+                algorithm='HS256'
+        )
+        
+        logger.info(f"Password changed successfully for {user.email}")
+        return {
+            "token": token,
+            "user": user,
+            "message": "Пароль успешно изменен"
+        }
+        
+    except HttpError:
+        raise
+    except Exception as e:
+        logger.error(f"Password change error for {user.email}: {str(e)}", exc_info=True)
+        raise HttpError(500, "Ошибка при изменении пароля")
