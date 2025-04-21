@@ -8,8 +8,10 @@ class ProductOutSchema(Schema):
     id: int
     title: str
     quantity: int
+    price: float
     category: 'CategoryInSchama'
     description: str
+    is_available: bool
     created_at: datetime
     updated_at: datetime
 

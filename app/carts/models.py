@@ -2,11 +2,13 @@ from django.db import models
 
 from app.products.models.producst import Products
 from app.common.models import TimeBaseModel
-from app.project.settings import main as main_settings
+# from app.project.settings import main as main_settings
+from app.customers.models import Customers
 
 class Carts(TimeBaseModel):
     user = models.OneToOneField(
-        main_settings.AUTH_USER_MODEL,
+        # main_settings.AUTH_USER_MODEL,
+        Customers,
         on_delete=models.CASCADE,
         related_name='cart',
     )

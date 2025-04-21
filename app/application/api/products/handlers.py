@@ -1,8 +1,8 @@
 import logging
+import re
 from typing import List, Optional
 
 from django.http import HttpRequest
-from ninja.security import django_auth
 from ninja import Router
 from ninja.errors import HttpError
 
@@ -16,14 +16,16 @@ logger = logging.getLogger('products')
 
 
 @router.get(
-    '/products{product_id}',
-    responese=ProductOutSchema,
+    '/products/{product_id}',
+    response=ProductOutSchema,
     operation_id='get_by_id',
-    auth=django_auth
 )
 def get_by_id(request: HttpRequest, product_id: int) -> ProductInSchema:
+    user = request.user
+    if not user.is_authenticated:
+            raise HttpError(401, "Требуется авторизация")
     try: 
-        product = Products.objects.get(id=product_id).first()
+        product = Products.objects.get(id=product_id)
     except Products.DoesNotExist as e:
         logger.error(f"No product with this id was found: {str(e)}", exc_info=True)
         raise HttpError(400, f'Продукт с указанным id не найден {str(e)}')
@@ -35,24 +37,40 @@ def get_by_id(request: HttpRequest, product_id: int) -> ProductInSchema:
     '/products_list',
     response=List[ProductOutSchema],
     operation_id='get_product_list',
-    auth=None
 )
 def get_products_list(request: HttpRequest) -> ProductInSchema:
-    ...
-
+    try:
+        products = Products.objects.all()
+        return list(products)
+    except Products.DoesNotExist as e:
+        logger.error(f"Server not found: {str(e)}", exc_info=True)
+        raise HttpError(500, f'Оишбка сервера {str(e)}')
 
 @router.get(
-    '/products{title}',
-    response=ProductOutSchema,
+    '/products_by_name',
+    response=List[ProductInSchema],
     operation_id='get_product_by_title',
-    auth=django_auth
 )
-def get_products_by_title(request: HttpRequest, title: Optional[str] = None) -> ProductInSchema:
+def get_products_by_title(request: HttpRequest, title: str, limit: int = 20, offset: int = 0) -> List[ProductOutSchema]:
     try:
-        if title is not None:
-            product = Products.objects.filter(title__icontains=title)
-    except Products.DoesNotExist as e:
-        logger.error(f'There is no product with that name: {str(e)}', exc_info=True)
-        raise HttpError(400, f'Продукт с указанным именем {title} не найден {str(e)}')
+        search_query = ' '.join(title.strip().lower().split())
+        
+        type_query = r'(^|\s)' + re.escape(search_query) + r'(\s|$)'
 
-    return product
+        products = Products.objects.filter(
+            title__iregex=type_query
+        )[offset:offset+limit]
+
+        if not products.exists():
+            products = Products.objects.filter(
+                title__icontains=search_query
+            )[offset:offset+limit]
+        
+        if not products.exists():
+            raise HttpError(404, f'Продукты с названием "{title}" не найдены')
+            
+        return list(products)
+    
+    except Exception as e:
+        logger.error(f'Error fetching products: {str(e)}', exc_info=True)
+        raise HttpError(500, 'Ошибка при получении продуктов')

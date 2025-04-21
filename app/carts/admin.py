@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app.orders.models import Carts, CartsProducts
+from app.carts.models import Carts, CartsProduct
 
 @admin.register(Carts)
 class CartsAdmin(admin.ModelAdmin):
@@ -17,7 +17,7 @@ class CartsAdmin(admin.ModelAdmin):
         return obj.items.count()
     items_count.short_description = 'Товаров в корзине'
 
-@admin.register(CartsProducts)
+@admin.register(CartsProduct)
 class CartsProductsAdmin(admin.ModelAdmin):
     list_display = ('id', 'product', 'quantity', 'added_at', 'total_price', 'created_at', 'updated_at')
     search_fields = ('id', 'product__title', 'cart__user__username')

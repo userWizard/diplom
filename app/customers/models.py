@@ -1,9 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+# from django.contrib.auth.models import AbstractUser
 
 from app.common.models import TimeBaseModel
 
-class Customers(AbstractUser, TimeBaseModel):
+class Customers(TimeBaseModel):
     '''Customers model'''
     username = models.CharField(
         verbose_name='Имя',
@@ -25,8 +25,8 @@ class Customers(AbstractUser, TimeBaseModel):
         blank=False,
         null=False,
     )
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name', 'phone_number']
+    # USERNAME_FIELD = 'email'
+    # REQUIRED_FIELDS = ['name', 'phone_number']
     
     class Meta:
         ordering = ('username',)

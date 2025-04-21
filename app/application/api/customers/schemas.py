@@ -52,18 +52,6 @@ class LoginSchema(Schema):
     def password_valid(cls, v):
         if not v:
             raise ValueError('Пароль не может быть пустым')
-        if len(v) < 8:
-            raise ValueError('Пароль должен содержать минимум 8 символов')
-        
-        # Проверка на наличие хотя бы одной заглавной буквы
-        if not any(char.isupper() for char in v):
-            raise ValueError('Пароль должен содержать хотя бы одну заглавную букву')
-        
-        # Проверка на наличие хотя бы одного специального символа
-        special_chars = r"[!@#$%^&*(),.?\":{}|<>]"
-        if not re.search(special_chars, v):
-            raise ValueError('Пароль должен содержать хотя бы один специальный символ: !@#$%^&*(),.?":{}|<>')
-        
         return v
 
 class CustomerOutSchema(ModelSchema):
@@ -72,21 +60,21 @@ class CustomerOutSchema(ModelSchema):
         model_fields = ['id', 'username', 'email', 'phone_number']
 
 class AuthOutSchema(Schema):
-    token: str
     user: CustomerOutSchema
 
 class MeOutShema(Schema):
     id: int
-    name: str
+    username: str
     email: str
 
 
 class ChangePasswordSchema(Schema):
-    old_password: str
+    password: str
     new_password: str
+    current_password: str
     
-    @field_validator('old_password')
-    def old_password_valid(cls, v):
+    @field_validator('password')
+    def password_valid(cls, v):
         if not v:
             raise ValueError('Старый пароль не может быть пустым')
         return v
@@ -106,3 +94,5 @@ class ChangePasswordSchema(Schema):
         if not re.search(special_chars, v):
             raise ValueError('Новый пароль должен содержать хотя бы один специальный символ: !@#$%^&*(),.?\":{}|<>')
         return v
+
+    

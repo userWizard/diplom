@@ -97,7 +97,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-AUTH_USER_MODEL = 'customers.Customers' 
+# AUTH_USER_MODEL = 'customers.Customers' 
 
 LANGUAGE_CODE = 'ru-ru'
 
