@@ -34,19 +34,19 @@ def get_catogry_by_name(request: HttpRequest, title: str, limit: int = 20, offse
         
         type_query = r'(^|\s)' + re.escape(search_query) + r'(\s|$)'
 
-        products = Categories.objects.filter(
+        categories = Categories.objects.filter(
             title__iregex=type_query
         )[offset:offset+limit]
 
-        if not products.exists():
-            products = Categories.objects.filter(
+        if not categories.exists():
+            categories = Categories.objects.filter(
                 title__icontains=search_query
             )[offset:offset+limit]
         
-        if not products.exists():
+        if not categories.exists():
             raise HttpError(404, f'Продукты с названием "{title}" не найдены')
             
-        return list(products)
+        return list(categories)
     
     except Exception as e:
         logger.error(f'Error fetching products: {str(e)}', exc_info=True)

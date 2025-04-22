@@ -1,12 +1,11 @@
 import logging
 import re
-from typing import List, Optional
-
+from typing import List
 from django.http import HttpRequest
 from ninja import Router
 from ninja.errors import HttpError
 
-from app.application.api.products.shemas import ProductOutSchema, ProductInSchema
+from app.application.api.products.schemas import ProductOutSchema, ProductInSchema
 from app.products.models.producst import Products
 
 
