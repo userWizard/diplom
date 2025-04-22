@@ -6,7 +6,7 @@ from django.http import HttpRequest
 from ninja.errors import HttpError
 from django.shortcuts import get_object_or_404
 
-from app.application.carts.shemas import CartsOutShema
+from app.application.api.carts.shemas import CartsOutShema
 from app.products.models.producst import Products
 from app.carts.models import Carts
 from app.customers.models import Customers
