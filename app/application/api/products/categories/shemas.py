@@ -1,13 +1,12 @@
-from ninja import Schema
+from pydantic import BaseModel
 
 from datetime import datetime
 
-class CategoryOutSchema(Schema):
-    id: int
+class CategoryInSchama(BaseModel):
     title: str
+
+class CategoryOutSchema(CategoryInSchama):
+    id: int # noqa
     created_at: datetime
     updated_at: datetime
 
-class CategoryInSchama(Schema):
-    id: int
-    title: str

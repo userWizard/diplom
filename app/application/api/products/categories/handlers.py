@@ -17,7 +17,7 @@ router = Router(tags=['Categories'])
 
 logger = logging.getLogger('categories')
 
-@router.get('/get_all_categories', response=List[CategoryInSchama], operation_id='get_all_products')
+@router.get('get_all_categories/', response=List[CategoryInSchama], operation_id='get_all_products')
 def get_all_categories(request: HttpRequest) -> List[CategoryOutSchema]:
     try:
         category = Categories.objects.all()
@@ -27,7 +27,7 @@ def get_all_categories(request: HttpRequest) -> List[CategoryOutSchema]:
         raise HttpError(500, f'Оишбка сервера {str(e)}')
 
 
-@router.get('get_catogry_by_name',  response=List[CategoryInSchama], operation_id='get_catogry_by_name')
+@router.get('get_catogry_by_name/',  response=List[CategoryInSchama], operation_id='get_catogry_by_name')
 def get_catogry_by_name(request: HttpRequest, title: str, limit: int = 20, offset: int = 0) -> List[CategoryOutSchema]:
     try:
         search_query = ' '.join(title.strip().lower().split())

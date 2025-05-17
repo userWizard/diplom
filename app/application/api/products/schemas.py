@@ -1,12 +1,15 @@
 from datetime import datetime
 
-from ninja import Schema
+from pydantic import BaseModel
 
 from app.application.api.products.categories.shemas import CategoryInSchama
 
-class ProductOutSchema(Schema):
-    id: int
+
+class ProductInSchema(BaseModel):
     title: str
+
+class ProductOutSchema(ProductInSchema):
+    id: int # noqa
     quantity: int
     price: float
     category: 'CategoryInSchama'
@@ -15,7 +18,3 @@ class ProductOutSchema(Schema):
     created_at: datetime
     updated_at: datetime
 
-
-class ProductInSchema(Schema):
-    id: int
-    title: str

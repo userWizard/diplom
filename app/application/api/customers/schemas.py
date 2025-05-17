@@ -1,10 +1,10 @@
-from ninja import Schema, ModelSchema
+from pydantic import BaseModel
 from pydantic import EmailStr, field_validator
 import re
 
 from app.customers.models import Customers
 
-class RegisterSchema(Schema):
+class RegisterSchema(BaseModel):
     """Валидация формы данных регистрации."""
     username: str
     email: EmailStr
@@ -43,7 +43,7 @@ class RegisterSchema(Schema):
         
         return v
 
-class LoginSchema(Schema):
+class LoginSchema(BaseModel):
     """Валидация формы данных авторизации."""
     email: EmailStr
     password: str
@@ -54,21 +54,21 @@ class LoginSchema(Schema):
             raise ValueError('Пароль не может быть пустым')
         return v
 
-class CustomerOutSchema(ModelSchema):
+class CustomerOutSchema(BaseModel):
     class Config:
         model = Customers
         model_fields = ['id', 'username', 'email', 'phone_number']
 
-class AuthOutSchema(Schema):
+class AuthOutSchema(BaseModel):
     user: CustomerOutSchema
 
-class MeOutShema(Schema):
+class MeOutShema(BaseModel):
     id: int
     username: str
     email: str
 
 
-class ChangePasswordSchema(Schema):
+class ChangePasswordSchema(BaseModel):
     password: str
     new_password: str
     current_password: str

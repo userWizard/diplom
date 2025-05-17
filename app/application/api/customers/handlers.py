@@ -22,7 +22,7 @@ router = Router(tags=['Customers'])
 
 logger = logging.getLogger('customers')  # Получаем логгер
 
-@router.post('/register', response=AuthOutSchema, operation_id='registration')
+@router.post('register/', response=AuthOutSchema, operation_id='registration')
 def register(request: HttpRequest, payload: RegisterSchema) -> AuthOutSchema:
     try:
         ip_key = f"reg_attempts:{request.META.get('REMOTE_ADDR')}"
@@ -62,7 +62,7 @@ def register(request: HttpRequest, payload: RegisterSchema) -> AuthOutSchema:
         raise HttpError(500, f'Ошибка при создании пользователя: {str(e)}')
 
 
-@router.post('/login', response=AuthOutSchema, operation_id='login')
+@router.post('login/', response=AuthOutSchema, operation_id='login')
 def login(request: HttpRequest, payload: LoginSchema) -> AuthOutSchema:
     try:
         cache_key = f"login_attempts:{payload.email}"
@@ -96,7 +96,7 @@ def login(request: HttpRequest, payload: LoginSchema) -> AuthOutSchema:
         logger.error(f"Login error: {str(e)}", exc_info=True)
         raise HttpError(500, "Ошибка сервера")
 
-@router.get('/me', response=MeOutShema, operation_id='me')
+@router.get('me/', response=MeOutShema, operation_id='me')
 def me(request: HttpRequest) -> MeOutShema:
     try:
         user = request.user
@@ -115,7 +115,7 @@ def me(request: HttpRequest) -> MeOutShema:
         raise HttpError(500, "Internal server error")
 
 
-@router.delete('/logout', operation_id='logout')
+@router.delete('logout/', operation_id='logout')
 def logout(request: HttpRequest):
     try:
         email = request.user.email
@@ -127,7 +127,7 @@ def logout(request: HttpRequest):
         raise HttpError(500, "Logout failed")
 
 
-@router.post('/change_password', response=AuthOutSchema, operation_id='change_password')
+@router.post('change_password/', response=AuthOutSchema, operation_id='change_password')
 def change_password(request: HttpRequest, payload: ChangePasswordSchema) -> AuthOutSchema:
     try:
         user = request.user

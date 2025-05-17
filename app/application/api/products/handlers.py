@@ -15,11 +15,11 @@ logger = logging.getLogger('products')
 
 
 @router.get(
-    '/products/{product_id}',
-    response=ProductOutSchema,
+    'products/{product_id}',
+    response=ProductInSchema,
     operation_id='get_by_id',
 )
-def get_by_id(request: HttpRequest, product_id: int) -> ProductInSchema:
+def get_by_id(request: HttpRequest, product_id: int) -> ProductOutSchema:
     user = request.user
     if not user.is_authenticated:
             raise HttpError(401, "Требуется авторизация")
@@ -33,11 +33,11 @@ def get_by_id(request: HttpRequest, product_id: int) -> ProductInSchema:
 
 
 @router.get(
-    '/products_list',
-    response=List[ProductOutSchema],
+    'products_list/',
+    response=List[ProductInSchema],
     operation_id='get_product_list',
 )
-def get_products_list(request: HttpRequest) -> ProductInSchema:
+def get_products_list(request: HttpRequest) -> ProductOutSchema:
     try:
         products = Products.objects.all()
         return list(products)
@@ -46,7 +46,7 @@ def get_products_list(request: HttpRequest) -> ProductInSchema:
         raise HttpError(500, f'Оишбка сервера {str(e)}')
 
 @router.get(
-    '/products_by_name',
+    'products_by_name/',
     response=List[ProductInSchema],
     operation_id='get_product_by_title',
 )

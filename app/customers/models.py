@@ -1,5 +1,4 @@
 from django.db import models
-# from django.contrib.auth.models import AbstractUser
 
 from app.common.models import TimeBaseModel
 
@@ -25,8 +24,6 @@ class Customers(TimeBaseModel):
         blank=False,
         null=False,
     )
-    # USERNAME_FIELD = 'email'
-    # REQUIRED_FIELDS = ['name', 'phone_number']
     
     class Meta:
         ordering = ('username',)
