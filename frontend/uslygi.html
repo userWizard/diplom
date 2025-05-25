@@ -30,104 +30,74 @@
             margin-bottom: 1rem;
         }
 
-        .auth-links {
-            display: inline-flex;
-            gap: 20px;
-        }
-
-        .user-profile {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        #usernameLink {
-            color: #1e90ff;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        #usernameLink:hover {
-            text-decoration: underline;
-        }
-
-        .logout-btn {
-            background: none;
-            border: none;
-            color: #ff4444;
-            cursor: pointer;
-            padding: 0;
-            margin-left: 15px;
-            font-size: 14px;
-        }
-
-        .logout-btn:hover {
-            text-decoration: underline;
-        }
-
         header {
-            background-color: white;
-            padding: 20px;
-            position: relative;
-            z-index: 1000; /* Убедитесь, что header поверх других элементов */
+        background-color: white;
+        padding: 20px;
         }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 20px;
-        }
+ header {
+    background-color: white;
+    padding: 20px;
+    position: relative;
+    z-index: 1000; /* Убедитесь, что header поверх других элементов */
+}
 
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex: 1;
-        }
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
+}
 
-        .header-right-group {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
 
-        .header-text {
-           color: #333;
-           font-size: 14px;
-           opacity: 0.8;
-           font-weight: 300;
-           line-height: 1.4;
-           margin-left: 1px; 
-           max-width: 220px; 
-        }
+.header-right-group {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
 
-        @media (max-width: 1024px) {
-            .header-content {
-                flex-wrap: wrap;
-                gap: 15px;
-            }
 
-            .header-left {
-                flex: 100%;
-                justify-content: center;
-                text-align: center;
-            }
+    .header-text {
+       color: #333;
+       font-size: 14px;
+       opacity: 0.8;
+       font-weight: 300;
+       line-height: 1.4;
+       margin-left: 1px; /* Добавил отступ слева вместо gap */
+       max-width: 220px; /* Фиксированная ширина для текста */
+    }
 
-            .header-contacts {
-                margin-left: 0;
-                padding-right: 0;
-                text-align: center;
-            }
-
-            .header-right {
-                justify-content: center;
-                width: 100%;
-            }
-        }
-
+@media (max-width: 1024px) {
+    .header-content {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .header-left {
+        flex: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .header-contacts {
+        margin-left: 0;
+        padding-right: 0;
+        text-align: center;
+    }
+    
+    .header-right {
+        justify-content: center;
+        width: 100%;
+    }
+}
     .phone-link {
         color: #1e90ff;
         text-decoration: none;
@@ -166,80 +136,52 @@
         opacity: 0.8;
     }
 
-    nav {
-        background-color: #fff;
-        padding: 15px 0;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+nav {
+    background-color: #fff;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1200px;
+}
+
+nav li {
+    position: relative;
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #3f3f3f;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    color: #1e90ff;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
     nav ul {
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        margin: 0 auto;
-        padding: 0;
-        max-width: 1200px;
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 0 10px;
     }
-
-    nav li {
-        position: relative;
-    }
-
+    
     nav a {
-        text-decoration: none;
-        font-size: 18px;
-        color: #3f3f3f;
-        padding: 8px 12px;
-        transition: all 0.3s ease;
+        font-size: 16px;
+        padding: 6px 10px;
     }
+}
 
-    nav a:hover {
-        color: #1e90ff;
-        transform: translateY(-2px);
-    }
-
-    @media (max-width: 768px) {
-        nav ul {
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 0 10px;
-        }
-
-        nav a {
-            font-size: 16px;
-            padding: 6px 10px;
-        }
-    }
-
-    .slider-container {
-        margin: 0; /* Убираем верхний и нижний отступы */
-        position: relative;
-        z-index: 999; /* Слайдер под навигацией */
-    }
-
-       .slider-track {
-           display: flex;
-           transition: 0.3s;
-       }
-
-       .slide {
-           min-width: 100%;
-           height: 470px;
-           background-size: cover;
-           background-position: center;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           flex-direction: column;
-       }
-
-       .slide-content {
-           background: rgba(255, 255, 255, 0.9);
-           padding: 30px;
-           text-align: center;
-           border-radius: 10px;
-       }
 
        .btn {
            background-color: #1e90ff;
@@ -539,7 +481,7 @@
     <div class="header-content">
         <!-- Левая группа -->
         <div class="header-left">
-            <a href="#" class="logo-link">
+            <a href="/" class="logo-link">
                 <img src="images/logo.png" alt="Логотип" class="logo">
             </a>
             <div class="header-text">Вентиляция, кондиционирование,<br>
@@ -553,15 +495,8 @@
                 <div class="callback-link" onclick="showCallbackForm()">заказать звонок</div>
             </div>
             <div class="header-right">
-                <a href="#">Корзина</a>
-                <div class="auth-links" id="authLinks">
-                    <a href="registration.html">Регистрация</a>
-                    <a href="authorization.html">Авторизация</a>
-                </div>
-                <div class="user-profile" id="userProfile" style="display: none;">
-                    <a href="/profile" id="usernameLink"></a>
-                     <button class="logout-btn" onclick="logout()">Выйти</button>
-                </div>
+                <a href="#">Корзина (0)</a>
+                <a href="#">Профиль</a>
             </div>
         </div>
     </div>
@@ -581,7 +516,7 @@
             </div>
             <input type="submit" value="Заказать звонок" class="sanding btn">
         </form>
-        <button class="fancybox-close-small" onclick="hideCallbackForm()">×</button>
+        <button class="fancybox-close-small" onclick="hideCallbackForm()"></button>
     </div>
 
     <nav>
@@ -589,52 +524,23 @@
             <li class="dropdown">
                 <a href="products.html" class="dropbtn">Каталог товаров</a>
                 <div class="dropdown-content">
-                    <a href="#">Каркасно-панельные установки</a>
-                    <a href="#">Осушители воздуха</a>
-                    <a href="#">Система пылеудаления</a>
-                    <a href="#">Система увлажнения воздуха</a>
-                    <a href="#">Кондиционеры</a>
-                    <a href="#">Вентиляция</a>
-                    <a href="#">Арматура</a>
-                    <a href="#">Детали трубопроводов</a>
+                    <a href="catalog.html#frame-panel">Каркасно-панельные установки</a>
+                    <a href="catalog.html#dryers">Осушители воздуха</a>
+                    <a href="catalog.html#dust-removal">Система пылеудаления</a>
+                    <a href="catalog.html#humidification">Система увлажнения воздуха</a>
+                    <a href="catalog.html#conditioners">Кондиционеры</a>
+                    <a href="catalog.html#ventilation">Вентиляция</a>
+                    <a href="catalog.html#armature">Арматура</a>
+                    <a href="catalog.html#pipeline">Детали трубопроводов</a>
                 </div>
             </li>
-            <li><a href="uslygi.html">Услуги</a></li>
+            <li><a href="#">Услуги</a></li>
             <li><a href="#">Отзывы</a></li>
             <li><a href="#">Наши работы</a></li>
             <li><a href="about.html">О компании</a></li>
             <li><a href="#">Контакты</a></li>
         </ul>
     </nav>
-
-    <div class="slider-container">
-        <div class="slider-track">
-            <div class="slide" style="background-image: url('images/slide1.jpg')">
-                <div class="slide-content">
-                    <h2>Вентиляция на производстве</h2>
-                    <a href="#" class="btn">Подробнее</a>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('images/slide2.jpg')">
-                <div class="slide-content">
-                    <h2>Вентиляция в бассейне</h2>
-                    <a href="#" class="btn">Подробнее</a>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('images/slide4.jpg')">
-                <div class="slide-content">
-                    <h2>Вентиляция в квартире</h2>
-                    <a href="#" class="btn">Подробнее</a>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('images/slide3.jpg')">
-                <div class="slide-content">
-                    <h2>Вентиляция в частном доме</h2>
-                    <a href="#" class="btn">Подробнее</a>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="services-section">
         <div class="services-grid">
             <div class="service-card">
@@ -696,6 +602,7 @@
         </div>
     </div>
 
+
     <footer>
         <div class="footer-content">
             <div class="footer-contacts">
@@ -736,7 +643,7 @@
         </div>
 
     <div class="footer-bottom">
-        <p>2025 © Лоскутов Никита Витальевич</p>
+        <p>2025 © Великолеп®. Все права защищены.</p>
     </div>
     </footer>
 
@@ -761,92 +668,6 @@
 
         function updateSlider() {
             sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-        }
-
-        document.addEventListener('DOMContentLoaded', async () => {
-            const token = localStorage.getItem('authToken');
-            if (token) {
-                try {
-                    const response = await fetch('http://127.0.0.1:8000/api/v1/customers/me', {
-                        headers: {
-                            'Authorization': `Bearer ${token}`
-                        }
-                    });
-
-                    if (response.status === 401) {
-                        // Токен невалидный - принудительный выход
-                        localStorage.removeItem('authToken');
-                        updateHeader(null);
-                        return;
-                    }
-
-                    if (response.ok) {
-                        const userData = await response.json();
-                        updateHeader(userData);
-                    }
-                } catch (error) {
-                    console.error('Ошибка проверки авторизации:', error);
-                }
-            }
-        });
-
-        function updateHeader(userData) {
-            const authLinks = document.getElementById('authLinks');
-            const userProfile = document.getElementById('userProfile');
-            const usernameLink = document.getElementById('usernameLink');
-
-            if (userData) {
-                authLinks.style.display = 'none';
-                userProfile.style.display = 'block';
-                usernameLink.textContent = userData.username;
-            } else {
-                authLinks.style.display = 'block';
-                userProfile.style.display = 'none';
-            }
-        }
-
-        async function fetchUserData() {
-            try {
-                const token = localStorage.getItem('authToken');
-                const response = await fetch('http://127.0.0.1:8000/api/v1/customers/me', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                return await response.json();
-            } catch (error) {
-                console.error('Ошибка получения данных:', error);
-            }
-        }
-
-        async function logout() {
-            const token = localStorage.getItem('authToken');
-
-            try {
-                const response = await fetch('http://127.0.0.1:8000/api/v1/customers/logout/', {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
-            
-                if (!response.ok) {
-                    throw new Error('Ошибка выхода');
-                }
-            
-                // Всегда очищаем данные на клиенте, даже если запрос не удался
-                localStorage.removeItem('authToken');
-                updateHeader(null);
-                window.location.href = 'index.html';
-            
-            } catch (error) {
-                console.error('Ошибка при выходе:', error);
-                // Все равно очищаем данные на клиенте
-                localStorage.removeItem('authToken');
-                updateHeader(null);
-                window.location.href = 'index.html';
-            }
         }
 
         // Автопереключение слайдов каждые 5 секунд

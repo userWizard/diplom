@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы о товаре</title>
+    <style>
+
+        h1, h2, h3 {
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            margin-bottom: 1rem;
+    }
+
+    header {
+        background-color: white;
+        padding: 20px;
+        }
+
+    header {
+        background-color: white;
+        padding: 20px;
+        position: relative;
+        z-index: 1000; /* Убедитесь, что header поверх других элементов */
+    }
+    
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 20px;
+    }
+    
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex: 1;
+    }
+    
+    .header-right-group {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+
+
+    .header-text {
+       color: #333;
+       font-size: 14px;
+       opacity: 0.8;
+       font-weight: 300;
+       line-height: 1.4;
+       margin-left: 1px; /* Добавил отступ слева вместо gap */
+       max-width: 220px; /* Фиксированная ширина для текста */
+    }
+    .header-left {
+        flex: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .header-contacts {
+        margin-left: 0;
+        padding-right: 0;
+        text-align: center;
+    }
+    
+    .header-right {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .phone-link {
+        color: #1e90ff;
+        text-decoration: none;
+        font-weight: 100;
+        font-size: 15px;
+        display: block;
+        white-space: nowrap;
+    }
+
+    .callback-link {
+        color: #666;
+        font-size: 12px;
+        text-decoration: underline;
+        cursor: pointer;
+        margin-top: 5px;
+    }
+
+    .header-right {
+        display: flex;
+        gap: 20px;
+    }
+
+    .header-right a {
+        color: #1e90ff;
+        text-decoration: none;
+        font-weight: 100;
+        white-space: nowrap;
+    }
+
+    .logo-link {
+        display: inline-block;
+        transition: opacity 0.3s ease;
+    }
+
+    .logo-link:hover {
+        opacity: 0.8;
+    }
+
+    nav {
+        background-color: #fff;
+        padding: 15px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin: 0 auto;
+        padding: 0;
+        max-width: 1200px;
+    }
+    
+    nav li {
+        position: relative;
+    }
+    
+    nav a {
+        text-decoration: none;
+        font-size: 18px;
+        color: #3f3f3f;
+        padding: 8px 12px;
+        transition: all 0.3s ease;
+    }
+    
+    nav a:hover {
+        color: #1e90ff;
+        transform: translateY(-2px);
+    }
+
+     .dropdown {
+           position: relative;
+           display: inline-block;
+       }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 280px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1000;
+            top: 100%;
+            left: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            color: #3f3f3f;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.25s ease;
+            border-bottom: 1px solid #f5f5f5;
+            font-size: 16px;
+            background-color: #fff;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f8f9fa;
+            color: #1e90ff;
+            padding-left: 25px;
+        }
+
+        .dropbtn::after {
+            content: ' ▼';
+            font-size: 0.7em;
+            vertical-align: middle;
+        }
+
+        /* Анимация для пунктов меню */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-content a {
+            animation: fadeIn 0.3s ease forwards;
+            opacity: 0;
+        }
+
+        .dropdown-content a:nth-child(1) { animation-delay: 0.1s; }
+        .dropdown-content a:nth-child(2) { animation-delay: 0.15s; }
+        .dropdown-content a:nth-child(3) { animation-delay: 0.2s; }
+        .dropdown-content a:nth-child(4) { animation-delay: 0.25s; }
+        .dropdown-content a:nth-child(5) { animation-delay: 0.3s; }
+        .dropdown-content a:nth-child(6) { animation-delay: 0.35s; }
+        .dropdown-content a:nth-child(7) { animation-delay: 0.4s; }
+        .dropdown-content a:nth-child(8) { animation-delay: 0.45s; }
+
+        .services-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .service-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            aspect-ratio: 1 / 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-image {
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .service-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .service-name {
+            font-size: 1.2rem;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .full-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Стили для модального окна */
+        #xs_recall {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        .xs_send_form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .policy {
+            margin: 15px 0;
+            font-size: 12px;
+        }
+
+        .sanding.btn {
+            background: #1e90ff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .fancybox-close-small {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .reviews-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .review-form {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .review-list {
+            margin-top: 30px;
+        }
+
+        .review-item {
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+        }
+
+        .rating-stars {
+            color: #ffd700;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .review-author {
+            font-weight: bold;
+            color: #1e90ff;
+        }
+
+        .review-date {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .rating-select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .submit-btn {
+            background: #1e90ff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #0066cc;
+        }
+
+        .error-message {
+            color: #ff4444;
+            margin-top: 10px;
+        }
+
+        .login-warning {
+            color: #666;
+            padding: 15px;
+            background: #fff3cd;
+            border-radius: 6px;
+        }
+
+        button {
+            background: #1e90ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .error-message {
+            color: #ff4444;
+            margin-top: 10px;
+        }
+
+
+
+        footer {
+            background: #ffffff;
+            padding: 40px 20px;
+            color: #000000;
+            border-top: 2px solid #eeeeee;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* Выравнивание по верхнему краю */
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        .footer-contacts,
+        .footer-navigation,
+        .footer-catalog {
+            flex: 1;
+            padding: 0 15px;
+            text-align: left; /* Единое выравнивание текста */
+        }
+
+
+         ul {
+            list-style: none;
+        } 
+
+         li {
+            margin-bottom: 10px;
+            line-height: 1.4;
+        } 
+
+        a {
+            color: #000000;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-contacts,
+            .footer-navigation,
+            .footer-catalog {
+                text-align: center;
+                padding: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <!-- Левая группа -->
+        <div class="header-left">
+            <a href="/" class="logo-link">
+                <img src="images/logo.png" alt="Логотип" class="logo">
+            </a>
+            <div class="header-text">Вентиляция, кондиционирование,<br>
+                отопление и холодоснабжение</div>
+        </div>
+
+        <!-- Правая группа -->
+        <div class="header-right-group">
+            <div class="header-contacts">
+                <a href="tel:+79991234567" class="phone-link">+7 (950) 066-80-53</a>
+                <div class="callback-link" onclick="showCallbackForm()">заказать звонок</div>
+            </div>
+            <div class="header-right">
+                <a href="#">Корзина (0)</a>
+                <a href="#">Профиль</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div class="reviews-container">
+        <!-- Форма отправки отзыва -->
+        <div class="review-form" id="reviewForm">
+            <h2>Оставить отзыв</h2>
+            <div class="login-warning" id="loginWarning" style="display: none;">
+                Для оставления отзыва необходимо <a href="authorization.html">войти</a>
+            </div>
+            <form onsubmit="submitReview(event)" id="reviewFormContent">
+                <div class="form-group">
+                    <label>Оценка товара:</label>
+                    <select class="rating-select" id="rating" required>
+                        <option value="5">5 - Отлично</option>
+                        <option value="4">4 - Хорошо</option>
+                        <option value="3">3 - Удовлетворительно</option>
+                        <option value="2">2 - Плохо</option>
+                        <option value="1">1 - Очень плохо</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Ваш отзыв:</label>
+                    <textarea id="reviewText" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Отправить отзыв</button>
+                <div class="error-message" id="reviewError"></div>
+            </form>
+        </div>
+
+        <!-- Список отзывов -->
+        <div class="review-list" id="reviewsList">
+            <h2>Отзывы покупателей</h2>
+            <!-- Отзывы будут загружены здесь -->
+        </div>
+    </div>
+
+<footer>
+        <div class="footer-content">
+            <div class="footer-contacts">
+                <h3>КОНТАКТЫ</h3>
+                <p>Телефон: +7 (950) 066-80-53</p>
+                <p>Email: ikonom@mail.ru</p>
+                <p>Адрес: г. Максималь, ул. Максимала, 22</p>
+            </div>
+
+            <div class="footer-navigation">
+                <h3>НАВИГАЦИЯ</h3>
+                <ul>
+                    <li><a href="uslugi.html">Наши услуги</a></li>
+                    <li><a href="#">Наши работы</a></li>
+                    <li><a href="about.html">О компании</a></li>
+                    <li><a href="dostavka.html">Доставка и оплата</a></li>
+                    <li><a href="faq.html">Популярные вопросы</a></li>
+                    <li><a href="#">Контакты</a></li>
+                    <li><a href="politika-konfidencialnosti.html">Политика конфиденциальности</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-catalog">
+                <h3>КАТАЛОГ</h3>
+                <ul>
+                    <li><a href="#">Кондиционеры</a></li>
+                    <li><a href="#">Вентиляции</a></li>
+                    <li><a href="#">Арматура</a></li>
+                    <li><a href="#">Детали трубопроводов</a></li>
+                </ul>
+            </div>
+        </div>
+</footer>
+
+    <script>
+        // Получение product_id из URL
+        const productId = new URLSearchParams(window.location.search).get('product_id');
+
+        // Загрузка отзывов при загрузке страницы
+        async function loadReviews() {
+            try {
+                const response = await fetch(`/api/v1/reviews/${productId}/get_reviews`);
+                const reviews = await response.json();
+                
+                const reviewsList = document.getElementById('reviewsList');
+                reviewsList.innerHTML = '<h2>Отзывы покупателей</h2>';
+                
+                reviews.forEach(review => {
+                    const reviewDate = new Date(review.created_at).toLocaleDateString('ru-RU');
+                    const reviewElement = `
+                        <div class="review-item">
+                            <div class="rating-stars">${'★'.repeat(review.rating)}</div>
+                            <div class="review-author">${review.customer.username}</div>
+                            <div class="review-date">${reviewDate}</div>
+                            <p>${review.text}</p>
+                        </div>
+                    `;
+                    reviewsList.innerHTML += reviewElement;
+                });
+                
+            } catch (error) {
+                console.error('Ошибка загрузки отзывов:', error);
+            }
+        }
+
+        // Отправка отзыва
+        async function submitReview(e) {
+            e.preventDefault();
+            
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                document.getElementById('loginWarning').style.display = 'block';
+                return;
+            }
+
+            const reviewData = {
+                rating: parseInt(document.getElementById('rating').value),
+                text: document.getElementById('reviewText').value.trim()
+            };
+
+            try {
+                const response = await fetch(`/api/v1/reviews/${productId}/create_reviews`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(reviewData)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.detail || 'Ошибка отправки отзыва');
+                }
+
+                // Очистка формы и обновление списка
+                document.getElementById('reviewText').value = '';
+                loadReviews();
+                
+            } catch (error) {
+                document.getElementById('reviewError').textContent = error.message;
+            }
+        }
+
+        // Проверка авторизации
+        function checkAuth() {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                document.getElementById('reviewFormContent').style.display = 'none';
+                document.getElementById('loginWarning').style.display = 'block';
+            }
+        }
+
+        // Инициализация
+        window.onload = () => {
+            checkAuth();
+            loadReviews();
+        }
+
+        let currentSlide = 0;
+        const sliderTrack = document.querySelector('.slider-track');
+        const slides = document.querySelectorAll('.slide');
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
+        }
+        function showCallbackForm() {
+            document.getElementById('xs_recall').style.display = 'inline-block';
+            document.getElementById('modalOverlay').style.display = 'block';
+        }
+
+        function hideCallbackForm() {
+            document.getElementById('xs_recall').style.display = 'none';
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+
+        function updateSlider() {
+            sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+
+         // Обработчик для ручного управления меню
+        document.querySelectorAll('.dropbtn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const menu = this.nextElementSibling;
+                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+        // Закрытие при клике вне формы
+        document.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('modalOverlay')) {
+                hideCallbackForm();
+            }
+        });
+
+        // Маска для телефона
+        document.querySelector('input[name="xs_phone"]').addEventListener('input', function(e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+            e.target.value = '+7' + (x[2] ? ' (' + x[2] : '') + (x[3] ? ') ' + x[3] : '') + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
+        });
+    </script>
+</body>
+</html>

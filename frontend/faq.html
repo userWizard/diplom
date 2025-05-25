@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Популярные вопросы - ВентиляцияРФ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Futura PT', sans-serif;
+        }
+
+        body {
+            background-color: #f0f8ff;
+            color: #3f3f3f;
+            font-size: 16px;
+            line-height: 150%;
+            cursor: default;
+            text-align: left;
+            min-width: 100%;
+            background: #fff;
+            letter-spacing: .3px;
+        }
+
+        h1, h2, h3 {
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            margin-bottom: 1rem;
+        }
+
+        header {
+        background-color: white;
+        padding: 20px;
+        }
+
+    header {
+        background-color: white;
+        padding: 20px;
+        position: relative;
+        z-index: 1000; /* Убедитесь, что header поверх других элементов */
+    }
+    
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 20px;
+    }
+    
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex: 1;
+    }
+    
+    .header-right-group {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+
+
+    .header-text {
+       color: #333;
+       font-size: 14px;
+       opacity: 0.8;
+       font-weight: 300;
+       line-height: 1.4;
+       margin-left: 1px; /* Добавил отступ слева вместо gap */
+       max-width: 220px; /* Фиксированная ширина для текста */
+    }
+
+@media (max-width: 1024px) {
+    .header-content {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .header-left {
+        flex: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .header-contacts {
+        margin-left: 0;
+        padding-right: 0;
+        text-align: center;
+    }
+    
+    .header-right {
+        justify-content: center;
+        width: 100%;
+    }
+}
+    .phone-link {
+        color: #1e90ff;
+        text-decoration: none;
+        font-weight: 100;
+        font-size: 15px;
+        display: block;
+        white-space: nowrap;
+    }
+
+    .callback-link {
+        color: #666;
+        font-size: 12px;
+        text-decoration: underline;
+        cursor: pointer;
+        margin-top: 5px;
+    }
+
+    .header-right {
+        display: flex;
+        gap: 20px;
+    }
+
+    .header-right a {
+        color: #1e90ff;
+        text-decoration: none;
+        font-weight: 100;
+        white-space: nowrap;
+    }
+
+    .logo-link {
+        display: inline-block;
+        transition: opacity 0.3s ease;
+    }
+
+    .logo-link:hover {
+        opacity: 0.8;
+    }
+
+    nav {
+        background-color: #fff;
+        padding: 15px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin: 0 auto;
+        padding: 0;
+        max-width: 1200px;
+    }
+    
+    nav li {
+        position: relative;
+    }
+    
+    nav a {
+        text-decoration: none;
+        font-size: 18px;
+        color: #3f3f3f;
+        padding: 8px 12px;
+        transition: all 0.3s ease;
+    }
+    
+    nav a:hover {
+        color: #1e90ff;
+        transform: translateY(-2px);
+    }
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    nav a {
+        font-size: 16px;
+        padding: 6px 10px;
+    }
+}
+
+        /* Основной контейнер */
+        .xs_content_container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .xs_breadcramb {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .xs_breadcramb a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+
+        .delimiter {
+            margin: 0 8px;
+            color: #999;
+        }
+
+        /* Заголовок */
+        .page_content h1 {
+            color: #1e90ff;
+            font-size: 32px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #1e90ff;
+        }
+
+        /* Основной текст */
+        .page_content p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        /* Нумерованные списки */
+        .wp-block-list {
+            counter-reset: section;
+            margin-left: 30px;
+            margin-bottom: 35px;
+        }
+
+        .wp-block-list li {
+            position: relative;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .wp-block-list strong {
+            color: #1e90ff;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        /* Таблица контактов */
+        .contacts-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .contacts-table td {
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+
+        .contacts-table h3 {
+            color: #1e90ff;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .page_content h1 {
+                font-size: 28px;
+            }
+
+            .wp-block-list {
+                margin-left: 15px;
+            }
+
+            .wp-block-list li {
+                padding-left: 30px;
+                font-size: 15px;
+            }
+
+            .contacts-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+    
+
+        footer {
+            background: #ffffff;
+            padding: 40px 20px;
+            color: #000000;
+            border-top: 2px solid #eeeeee;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* Выравнивание по верхнему краю */
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        .footer-contacts,
+        .footer-navigation,
+        .footer-catalog {
+            flex: 1;
+            padding: 0 15px;
+            text-align: left; /* Единое выравнивание текста */
+        }
+
+
+         ul {
+            list-style: none;
+        } 
+
+         li {
+            margin-bottom: 10px;
+            line-height: 1.4;
+        } 
+
+        a {
+            color: #000000;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-contacts,
+            .footer-navigation,
+            .footer-catalog {
+                text-align: center;
+                padding: 0;
+                width: 100%;
+            }
+        }
+
+        /* Стили для кнопки "Наверх" */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #3f3f3f;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.7;
+            transition: 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .scroll-top:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+
+       /* Выпадающий список */
+        .dropdown {
+           position: relative;
+           display: inline-block;
+       }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 280px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1000;
+            top: 100%;
+            left: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            color: #3f3f3f;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.25s ease;
+            border-bottom: 1px solid #f5f5f5;
+            font-size: 16px;
+            background-color: #fff;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f8f9fa;
+            color: #1e90ff;
+            padding-left: 25px;
+        }
+
+        .dropbtn::after {
+            content: ' ▼';
+            font-size: 0.7em;
+            vertical-align: middle;
+        }
+
+        /* Анимация для пунктов меню */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-content a {
+            animation: fadeIn 0.3s ease forwards;
+            opacity: 0;
+        }
+
+        .dropdown-content a:nth-child(1) { animation-delay: 0.1s; }
+        .dropdown-content a:nth-child(2) { animation-delay: 0.15s; }
+        .dropdown-content a:nth-child(3) { animation-delay: 0.2s; }
+        .dropdown-content a:nth-child(4) { animation-delay: 0.25s; }
+        .dropdown-content a:nth-child(5) { animation-delay: 0.3s; }
+        .dropdown-content a:nth-child(6) { animation-delay: 0.35s; }
+        .dropdown-content a:nth-child(7) { animation-delay: 0.4s; }
+        .dropdown-content a:nth-child(8) { animation-delay: 0.45s; }
+
+        .services-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .service-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            aspect-ratio: 1 / 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-image {
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .service-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .service-name {
+            font-size: 1.2rem;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .full-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Стили для модального окна */
+        #xs_recall {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        .xs_send_form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .policy {
+            margin: 15px 0;
+            font-size: 12px;
+        }
+
+        .sanding.btn {
+            background: #1e90ff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .fancybox-close-small {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+
+
+        /* Стили для страницы */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .xs_breadcramb {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .xs_breadcramb a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+
+        .delimiter {
+            margin: 0 8px;
+            color: #999;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        /* Стили для FAQ */
+        .faq .item {
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        .faq .question .name {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            cursor: pointer;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .faq .number {
+            font-size: 24px;
+            color: #1e90ff;
+            min-width: 60px;
+        }
+        .faq .label {
+            font-size: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .faq .answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding-left: 60px;
+        }
+
+        .faq .item.active .answer {
+            max-height: 2000px; /* Достаточно большое значение для плавного раскрытия */
+        }
+
+        .faq p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .faq ol {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+
+        .faq a.fancybox {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<header>
+    <div class="header-content">
+        <!-- Левая группа -->
+        <div class="header-left">
+            <a href="/" class="logo-link">
+                <img src="images/logo.png" alt="Логотип" class="logo">
+            </a>
+            <div class="header-text">Вентиляция, кондиционирование,<br>
+                отопление и холодоснабжение</div>
+        </div>
+
+        <!-- Правая группа -->
+        <div class="header-right-group">
+            <div class="header-contacts">
+                <a href="tel:+79991234567" class="phone-link">+7 (950) 066-80-53</a>
+                <div class="callback-link" onclick="showCallbackForm()">заказать звонок</div>
+            </div>
+            <div class="header-right">
+                <a href="#">Корзина (0)</a>
+                <a href="#">Профиль</a>
+            </div>
+        </div>
+    </div>
+</header>
+    <!-- Модальное окно -->
+    <div class="modal-overlay" id="modalOverlay" onclick="hideCallbackForm()"></div>
+    <div id="xs_recall">
+        <div class="title">Заказ обратного звонка</div>
+        <p class="description">Оставьте свои контактные данные и мы свяжемся с Вами</p>
+        <form class="xs_send_form">
+            <div class="xs_result"></div>
+            <input type="text" name="xs_name" placeholder="Ваше имя" required>
+            <input type="text" name="xs_phone" placeholder="+7 (___) ___-__-__" required>
+            <div class="policy">
+                <input type="checkbox" id="check1" required checked>
+                <label for="check1">Согласен с <a href="#" target="_blank">политикой конфиденциальности</a></label>
+            </div>
+            <input type="submit" value="Заказать звонок" class="sanding btn">
+        </form>
+        <button class="fancybox-close-small" onclick="hideCallbackForm()">×</button>
+    </div>
+
+    <nav>
+        <ul>
+            <li class="dropdown">
+                <a href="products.html" class="dropbtn">Каталог товаров</a>
+                <div class="dropdown-content">
+                    <a href="catalog.html#frame-panel">Каркасно-панельные установки</a>
+                    <a href="catalog.html#dryers">Осушители воздуха</a>
+                    <a href="catalog.html#dust-removal">Система пылеудаления</a>
+                    <a href="catalog.html#humidification">Система увлажнения воздуха</a>
+                    <a href="catalog.html#conditioners">Кондиционеры</a>
+                    <a href="catalog.html#ventilation">Вентиляция</a>
+                    <a href="catalog.html#armature">Арматура</a>
+                    <a href="catalog.html#pipeline">Детали трубопроводов</a>
+                </div>
+            </li>
+            <li><a href="uslygi.html">Услуги</a></li>
+            <li><a href="#">Отзывы</a></li>
+            <li><a href="#">Наши работы</a></li>
+            <li><a href="about.html">О компании</a></li>
+            <li><a href="#">Контакты</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="go-hide">
+            <nav class="xs_breadcramb go-hide__inner">
+                <span><a href="/">Главная</a></span>
+                <span class="delimiter">/</span>
+                <span>Популярные вопросы</span>
+            </nav>
+        </div>
+        
+        <h1>Популярные вопросы</h1>
+        
+        <div class="page_content">
+            <div class="faq">
+                <!-- Вопрос 1 -->
+                <div class="item active">
+                    <div class="question">
+                        <a href="#chto-takoe-xsiteshop" class="name">
+                            <span class="number">01</span>
+                            <span class="label">Для чего нужна вентиляция?</span>
+                        </a>
+                    </div>
+                    <div class="answer" id="chto-takoe-xsiteshop">
+                        <!-- Содержимое ответа -->
+                         <p>Вентиляция — это движение воздуха в помещении. В здание воздух поступает с улицы и внутри наполняется различными веществами: углекислым газом от нашего дыхания, пылью, химическими выделениями от предметов, шерстью животных и т.д. Этот загрязненный воздух движется к вытяжке и выводится через нее наружу. А в это время в комнату поступает новая порция свежего воздуха снаружи, которая также уйдет в вытяжку.</p>
+                        <p>Именно благодаря вентиляции в помещении складывается здоровый и комфортный микроклимат:</p>
+                        <ol>
+                        <li>Нормализуется уровень углекислого газа</li>
+                        </ol>
+                        <p>Углекислый газ присутствует в помещении всегда, т. к. мы его выдыхаем. Большое количество углекислого газа оказывает негативное воздействие на человеческий организм. Также у Вас может появиться ощущение духоты.</p>
+                        <p>Хорошая вентиляция обеспечивает постоянное обновление воздуха. Поступающий с улицы воздух сменяет воздух в комнате вместе с накопившимся в нем углекислым газом. В таком помещении не душно и комфортно находиться.</p>
+                        <ol start="2">
+                        <li>Нормализуется влажность</li>
+                        </ol>
+                        <p>Правильная вентиляция предполагает, что излишне влажный воздух из помещений своевременно уходит в вытяжку. Это предотвращает образование плесени на стенах помещения.</p>
+                        <ol start="3">
+                        <li>Дополнительная функциональность.</li>
+                        </ol>
+                        <p>Большинство систем вентиляции оснащаются фильтрующими элементами, которые устраняют загрязнения с воздушных масс при входе в помещение. В результате создается безопасный для организма микроклимат. Также может быть установлена функция подогрева, которая исключит вероятность возникновения простудных заболеваний из-за проникновения холодного воздуха снаружи.</p>
+                    </div>
+                </div>
+
+                <div class="item active">
+                    <div class="question">
+                        <a href="#chto-takoe-xsiteshop" class="name">
+                            <span class="number">02</span>
+                            <span class="label">Что такое приточная вентидяция?</span>
+                        </a>
+                    </div>
+                    <div class="answer" id="chto-takoe-xsiteshop">
+                        <!-- Содержимое ответа -->
+                        <p>Организовать эффективный воздухообмен в помещении естественным образом удается далеко не всегда. В таком случае приточная вентиляция – лучший вариант.</p>
+                    <p>Приточная вентиляция представляет собой систему средств, с помощью которых в помещение принудительно нагнетается необходимое количество свежего воздуха. При этом воздушный поток может подогреваться до комфортной температуры и фильтроваться, чтобы удалить возможные загрязнения.</p>
+                    <p>Любая такая система должна быть снабжена следующими элементами:</p>
+                    <p>- вентилятором для искусственного побуждения движения воздушных масс;</p>
+                    <p>- нагревателем для формирования комфортной температуры поступающего воздуха;</p>
+                    <p>- фильтром для защиты от грязи и пыли воздушных масс извне;</p>
+                    <p>- системой автоматического управления для исключения перегревания системы;</p>
+                    <p>- системой шумопоглощения для подавления звуков снаружи и самого прибора.</p>
+                    <p>Конечно же, такое устройство может быть выполнено в разных вариантах.</p>
+                    </div>
+                </div>
+
+                <div class="item active">
+                    <div class="question">
+                        <a href="#chto-takoe-xsiteshop" class="name">
+                            <span class="number">03</span>
+                            <span class="label">Для чего нужен кондиционер?</span>
+                        </a>
+                    </div>
+                    <div class="answer" id="chto-takoe-xsiteshop">
+                        <!-- Содержимое ответа -->
+                        <p>Основное назначение кондиционера – поддержание комфортной температуры в помещении. Установленные в устройстве фильтры не позволяют пыли и бактериям попадать в дом, очищая воздух. Также кондиционер снижает шум с улицы в сравнении с открытым окном. Также есть дополнительные функции:</p>
+                        <p>- увлажнение воздуха;</p>
+                        <p>- ионизация;</p>
+                        <p>- осушение;</p>
+                        <p>- бесшумная настройка для работы ночью;</p>
+                        <p>- усиленный продув;</p>
+                        <p>- таймер – завершит работу системы в указанное время;</p>
+                        <p>- swing – равномерное распределение воздуха по квартире;</p>
+                        <p>- самодиагностика.</p>
+                        <p>Функциональность, срок службы и надежность кондиционера зависят от выбранной Вами модели.</p>
+                    </div>
+                </div>
+
+                <!-- Остальные вопросы по аналогии -->
+                
+            </div>
+
+            
+            <p>Если у вас остались вопросы, вы можете позвонить нам или 
+                <a href="#xs_recall" class="fancybox">заказать обратный звонок</a>.
+            </p>
+        </div>
+    </div>
+
+
+
+
+<footer>
+        <div class="footer-content">
+            <div class="footer-contacts">
+                <h3>КОНТАКТЫ</h3>
+                <p>Телефон: +7 (950) 066-80-53</p>
+                <p>Email: ikonom@mail.ru</p>
+                <p>Адрес: г. Максималь, ул. Максимала, 22</p>
+            </div>
+
+            <div class="footer-navigation">
+                <h3>НАВИГАЦИЯ</h3>
+                <ul>
+                    <li><a href="uslygi.html">Наши услуги</a></li>
+                    <li><a href="#">Наши работы</a></li>
+                    <li><a href="about.html">О компании</a></li>
+                    <li><a href="dostavka.html">Доставка и оплата</a></li>
+                    <li><a href="#">Популярные вопросы</a></li>
+                    <li><a href="#">Контакты</a></li>
+                    <li><a href="politika-konfidencialnosti.html">Политика конфиденциальности</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-catalog">
+                <h3>КАТАЛОГ</h3>
+                <ul>
+                    <li><a href="#">Кондиционеры</a></li>
+                    <li><a href="#">Вентиляции</a></li>
+                    <li><a href="#">Арматура</a></li>
+                    <li><a href="#">Детали трубопроводов</a></li>
+                </ul>
+            </div>
+        </div>
+
+            <script>
+        let currentSlide = 0;
+        const sliderTrack = document.querySelector('.slider-track');
+        const slides = document.querySelectorAll('.slide');
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
+        }
+        function showCallbackForm() {
+            document.getElementById('xs_recall').style.display = 'inline-block';
+            document.getElementById('modalOverlay').style.display = 'block';
+        }
+
+        function hideCallbackForm() {
+            document.getElementById('xs_recall').style.display = 'none';
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+
+        function updateSlider() {
+            sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        // Автопереключение слайдов каждые 5 секунд
+        setInterval(nextSlide, 5000);
+
+        // Добавляем обработчик для закрытия меню при клике вне его области
+        document.addEventListener('click', function(event) {
+            const dropdowns = document.querySelectorAll('.dropdown');
+            dropdowns.forEach(dropdown => {
+                if (!dropdown.contains(event.target)) {
+                    dropdown.querySelector('.dropdown-content').style.display = 'none';
+                }
+            });
+        });
+
+        // Обработчик для ручного управления меню
+        document.querySelectorAll('.dropbtn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const menu = this.nextElementSibling;
+                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+        // Закрытие при клике вне формы
+        document.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('modalOverlay')) {
+                hideCallbackForm();
+            }
+        });
+
+        // Обработка кликов по вопросам
+        document.querySelectorAll('.faq .question a').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const parentItem = this.closest('.item');
+                parentItem.classList.toggle('active');
+                
+                // Закрытие других открытых вопросов
+                document.querySelectorAll('.faq .item').forEach(otherItem => {
+                    if(otherItem !== parentItem) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // Маска для телефона
+        document.querySelector('input[name="xs_phone"]').addEventListener('input', function(e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+            e.target.value = '+7' + (x[2] ? ' (' + x[2] : '') + (x[3] ? ') ' + x[3] : '') + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
+        });
+    </script>
+</body>
+</html>

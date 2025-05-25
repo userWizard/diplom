@@ -6,15 +6,21 @@ from datetime import timedelta
 from ninja import Router
 from ninja.errors import HttpError
 from django.contrib.auth import logout
+from django.contrib.auth.hashers import check_password
 from django.contrib.auth.hashers import make_password
+from django.shortcuts import get_object_or_404
 
 from app.application.api.customers.schemas import (
-    AuthOutSchema,
     ChangePasswordSchema,
-    CustomerOutSchema,
     LoginSchema,
     MeOutShema,
-    RegisterSchema
+    RegisterSchema,
+    RegisterOutSchema,
+    RegisterInSchema,
+    LoginOutSchema,
+    LoginInSchema,
+    ChangePasswordOutSchema,
+    ChangePasswordInSchema
 )
 from app.customers.models import Customers
 
@@ -22,8 +28,8 @@ router = Router(tags=['Customers'])
 
 logger = logging.getLogger('customers')  # Получаем логгер
 
-@router.post('register/', response=AuthOutSchema, operation_id='registration')
-def register(request: HttpRequest, payload: RegisterSchema) -> AuthOutSchema:
+@router.post('register/', response=RegisterInSchema, operation_id='registration')
+def register(request: HttpRequest, payload: RegisterSchema) -> RegisterOutSchema:
     try:
         ip_key = f"reg_attempts:{request.META.get('REMOTE_ADDR')}"
         reg_attempts = cache.get(ip_key, 0)
@@ -52,9 +58,12 @@ def register(request: HttpRequest, payload: RegisterSchema) -> AuthOutSchema:
         cache.delete(ip_key)
         logger.info(f"New user registered: {user.email} (ID: {user.id})")
 
-        return {
-            'user': user
-        }
+        return RegisterInSchema(
+            username=user.username,
+            email=user.email,
+            phone_number=user.phone_number,
+            password=user.password
+        )
     
     except Exception as e:
         logger.error(f"Registration error: {str(e)}", exc_info=True)
@@ -62,8 +71,8 @@ def register(request: HttpRequest, payload: RegisterSchema) -> AuthOutSchema:
         raise HttpError(500, f'Ошибка при создании пользователя: {str(e)}')
 
 
-@router.post('login/', response=AuthOutSchema, operation_id='login')
-def login(request: HttpRequest, payload: LoginSchema) -> AuthOutSchema:
+@router.post('login/', response=LoginInSchema, operation_id='login')
+def login(request: HttpRequest, payload: LoginSchema) -> LoginOutSchema:
     try:
         cache_key = f"login_attempts:{payload.email}"
         attempts = cache.get(cache_key, 0)
@@ -72,29 +81,32 @@ def login(request: HttpRequest, payload: LoginSchema) -> AuthOutSchema:
             logger.warning(f"Too many login attempts for email: {payload.email}")
             raise HttpError(429, "Слишком много попыток входа. Попробуйте позже.")
 
-        try:
-            user = Customers.objects.get(email=payload.email)
-        except Customers.ObjectDoesNotExist:
-            logger.warning(f"User not found: {payload.email}")
-            raise HttpError(404, "Пользователь не найден")
+        user = get_object_or_404(Customers, email=payload.email)
         
         if user is None:
             cache.set(cache_key, attempts + 1, timeout=900)  # 15 минут
             logger.warning(f"Failed login for email: {payload.email}. Attempts: {attempts + 1}")
             raise HttpError(401, "Неверный email или пароль")
 
-        if payload.password != user.password:
-            logger.warning(f"Invalid password for user: {payload.email}")
-            raise HttpError(401, "Неверный пароль")
+        if not check_password(payload.password, user.password):
+            cache.set(cache_key, attempts + 1, timeout=900)  # 15 минут
+            logger.warning(f"Failed login for email: {payload.email}. Attempts: {attempts + 1}")
+            raise HttpError(401, "Неверный email или пароль")
 
-        return {
-            "user": CustomerOutSchema.from_orm(user)
-        }
+        cache.delete(cache_key)
+        logger.info(f"User logged in: {user.email} (ID: {user.id})")
+
+        return LoginInSchema(
+            email=user.email,
+            password=user.password
+        )
+
     except HttpError:
         raise  HttpError(401, "Неверные учетные данные.")
     except Exception as e:
         logger.error(f"Login error: {str(e)}", exc_info=True)
         raise HttpError(500, "Ошибка сервера")
+
 
 @router.get('me/', response=MeOutShema, operation_id='me')
 def me(request: HttpRequest) -> MeOutShema:
@@ -127,8 +139,8 @@ def logout(request: HttpRequest):
         raise HttpError(500, "Logout failed")
 
 
-@router.post('change_password/', response=AuthOutSchema, operation_id='change_password')
-def change_password(request: HttpRequest, payload: ChangePasswordSchema) -> AuthOutSchema:
+@router.post('change_password/', response=ChangePasswordInSchema, operation_id='change_password')
+def change_password(request: HttpRequest, payload: ChangePasswordSchema) -> ChangePasswordOutSchema:
     try:
         user = request.user
         logger.info(f"Password change requested for {user.email}")
@@ -142,7 +154,8 @@ def change_password(request: HttpRequest, payload: ChangePasswordSchema) -> Auth
             raise HttpError(400, "Неверный текущий пароль")
         
                 
-        if payload.new_password != payload.current_password:
+        if not check_password(payload.new_password, payload.current_password):
+            logger.warning(f"The passwords don't match. Make sure that the data is entered correctly: {payload.new_password}:{payload.current_password}")
             raise HttpError('Пароли не совпадают. Повторите попытку еще раз!')
         
         # Установка нового пароля
@@ -150,10 +163,7 @@ def change_password(request: HttpRequest, payload: ChangePasswordSchema) -> Auth
         user.save()
         
         logger.info(f"Password changed successfully for {user.email}")
-        return {
-            "user": user,
-            "message": "Пароль успешно изменен"
-        }
+        return ChangePasswordInSchema(password=payload.password, new_password=payload.new_password, current_password=payload.current_password)
         
     except HttpError:
         raise

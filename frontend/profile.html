@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя</title>
+    <style>
+
+    h1, h2, h3 {
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            margin-bottom: 1rem;
+    }
+
+    header {
+        background-color: white;
+        padding: 20px;
+        }
+
+    header {
+        background-color: white;
+        padding: 20px;
+        position: relative;
+        z-index: 1000; /* Убедитесь, что header поверх других элементов */
+    }
+    
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 20px;
+    }
+    
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex: 1;
+    }
+    
+    .header-right-group {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+
+
+    .header-text {
+       color: #333;
+       font-size: 14px;
+       opacity: 0.8;
+       font-weight: 300;
+       line-height: 1.4;
+       margin-left: 1px; /* Добавил отступ слева вместо gap */
+       max-width: 220px; /* Фиксированная ширина для текста */
+    }
+    .header-left {
+        flex: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .header-contacts {
+        margin-left: 0;
+        padding-right: 0;
+        text-align: center;
+    }
+    
+    .header-right {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .phone-link {
+        color: #1e90ff;
+        text-decoration: none;
+        font-weight: 100;
+        font-size: 15px;
+        display: block;
+        white-space: nowrap;
+    }
+
+    .callback-link {
+        color: #666;
+        font-size: 12px;
+        text-decoration: underline;
+        cursor: pointer;
+        margin-top: 5px;
+    }
+
+    .header-right {
+        display: flex;
+        gap: 20px;
+    }
+
+    .header-right a {
+        color: #1e90ff;
+        text-decoration: none;
+        font-weight: 100;
+        white-space: nowrap;
+    }
+
+    .logo-link {
+        display: inline-block;
+        transition: opacity 0.3s ease;
+    }
+
+    .logo-link:hover {
+        opacity: 0.8;
+    }
+
+    nav {
+        background-color: #fff;
+        padding: 15px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin: 0 auto;
+        padding: 0;
+        max-width: 1200px;
+    }
+    
+    nav li {
+        position: relative;
+    }
+    
+    nav a {
+        text-decoration: none;
+        font-size: 18px;
+        color: #3f3f3f;
+        padding: 8px 12px;
+        transition: all 0.3s ease;
+    }
+    
+    nav a:hover {
+        color: #1e90ff;
+        transform: translateY(-2px);
+    }
+
+     .dropdown {
+           position: relative;
+           display: inline-block;
+       }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 280px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1000;
+            top: 100%;
+            left: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            color: #3f3f3f;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.25s ease;
+            border-bottom: 1px solid #f5f5f5;
+            font-size: 16px;
+            background-color: #fff;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f8f9fa;
+            color: #1e90ff;
+            padding-left: 25px;
+        }
+
+        .dropbtn::after {
+            content: ' ▼';
+            font-size: 0.7em;
+            vertical-align: middle;
+        }
+
+        /* Анимация для пунктов меню */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-content a {
+            animation: fadeIn 0.3s ease forwards;
+            opacity: 0;
+        }
+
+        .dropdown-content a:nth-child(1) { animation-delay: 0.1s; }
+        .dropdown-content a:nth-child(2) { animation-delay: 0.15s; }
+        .dropdown-content a:nth-child(3) { animation-delay: 0.2s; }
+        .dropdown-content a:nth-child(4) { animation-delay: 0.25s; }
+        .dropdown-content a:nth-child(5) { animation-delay: 0.3s; }
+        .dropdown-content a:nth-child(6) { animation-delay: 0.35s; }
+        .dropdown-content a:nth-child(7) { animation-delay: 0.4s; }
+        .dropdown-content a:nth-child(8) { animation-delay: 0.45s; }
+
+        .services-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .service-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            aspect-ratio: 1 / 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-image {
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .service-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .service-name {
+            font-size: 1.2rem;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .full-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Стили для модального окна */
+        #xs_recall {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        .xs_send_form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .policy {
+            margin: 15px 0;
+            font-size: 12px;
+        }
+
+        .sanding.btn {
+            background: #1e90ff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .fancybox-close-small {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .profile-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+        }
+
+        .avatar-section {
+            text-align: center;
+        }
+
+        .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .info-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .user-field {
+            margin-bottom: 20px;
+        }
+
+        .user-field label {
+            display: block;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .user-field input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .password-form {
+            margin-top: 40px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .profile-sections {
+        margin: 30px 0;
+        display: grid;
+        gap: 20px;
+        }
+
+        .profile-section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .profile-section h3 {
+            color: #1e90ff;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .section-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-link {
+            color: #1e90ff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .section-link:hover {
+            opacity: 0.8;
+        }
+
+        #cartCount,
+        #reviewsCount {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background: #1e90ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .error-message {
+            color: #ff4444;
+            margin-top: 10px;
+        }
+
+
+
+        footer {
+            background: #ffffff;
+            padding: 40px 20px;
+            color: #000000;
+            border-top: 2px solid #eeeeee;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* Выравнивание по верхнему краю */
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        .footer-contacts,
+        .footer-navigation,
+        .footer-catalog {
+            flex: 1;
+            padding: 0 15px;
+            text-align: left; /* Единое выравнивание текста */
+        }
+
+
+         ul {
+            list-style: none;
+        } 
+
+         li {
+            margin-bottom: 10px;
+            line-height: 1.4;
+        } 
+
+        a {
+            color: #000000;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-contacts,
+            .footer-navigation,
+            .footer-catalog {
+                text-align: center;
+                padding: 0;
+                width: 100%;
+            }
+        }
+
+
+        .add-review-section {
+        margin-top: 30px;
+        padding: 25px;
+        background: #f8f9fa;
+        border-radius: 10px;
+    }
+
+    .rating-stars {
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .star {
+        color: #ccc;
+        transition: color 0.2s;
+    }
+
+    .star.active,
+    .star:hover {
+        color: #ffd700;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+
+    .btn-primary {
+        background: #1e90ff;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <!-- Левая группа -->
+        <div class="header-left">
+            <a href="/" class="logo-link">
+                <img src="images/logo.png" alt="Логотип" class="logo">
+            </a>
+            <div class="header-text">Вентиляция, кондиционирование,<br>
+                отопление и холодоснабжение</div>
+        </div>
+
+        <!-- Правая группа -->
+        <div class="header-right-group">
+            <div class="header-contacts">
+                <a href="tel:+79991234567" class="phone-link">+7 (950) 066-80-53</a>
+                <div class="callback-link" onclick="showCallbackForm()">заказать звонок</div>
+            </div>
+            <div class="header-right">
+                <a href="#">Корзина (0)</a>
+                <a href="#">Профиль</a>
+            </div>
+        </div>
+    </div>
+</header>
+    <!-- Модальное окно -->
+    <div class="modal-overlay" id="modalOverlay" onclick="hideCallbackForm()"></div>
+    <div id="xs_recall">
+        <div class="title">Заказ обратного звонка</div>
+        <p class="description">Оставьте свои контактные данные и мы свяжемся с Вами</p>
+        <form class="xs_send_form">
+            <div class="xs_result"></div>
+            <input type="text" name="xs_name" placeholder="Ваше имя" required>
+            <input type="text" name="xs_phone" placeholder="+7 (___) ___-__-__" required>
+            <div class="policy">
+                <input type="checkbox" id="check1" required checked>
+                <label for="check1">Согласен с <a href="#" target="_blank">политикой конфиденциальности</a></label>
+            </div>
+            <input type="submit" value="Заказать звонок" class="sanding btn">
+        </form>
+        <button class="fancybox-close-small" onclick="hideCallbackForm()">×</button>
+    </div>
+
+    <nav>
+        <ul>
+            <li class="dropdown">
+                <a href="products.html" class="dropbtn">Каталог товаров</a>
+                <div class="dropdown-content">
+                    <a href="catalog.html#frame-panel">Каркасно-панельные установки</a>
+                    <a href="catalog.html#dryers">Осушители воздуха</a>
+                    <a href="catalog.html#dust-removal">Система пылеудаления</a>
+                    <a href="catalog.html#humidification">Система увлажнения воздуха</a>
+                    <a href="catalog.html#conditioners">Кондиционеры</a>
+                    <a href="catalog.html#ventilation">Вентиляция</a>
+                    <a href="catalog.html#armature">Арматура</a>
+                    <a href="catalog.html#pipeline">Детали трубопроводов</a>
+                </div>
+            </li>
+            <li><a href="uslygi.html">Услуги</a></li>
+            <li><a href="#">Отзывы</a></li>
+            <li><a href="#">Наши работы</a></li>
+            <li><a href="about.html">О компании</a></li>
+            <li><a href="#">Контакты</a></li>
+        </ul>
+    </nav>
+
+    <div class="profile-container">
+        <!-- Левая часть - аватар -->
+        <div class="avatar-section">
+            <img src="images/me.jpg" alt="Аватар" class="avatar">
+            <button onclick="document.getElementById('avatar-input').click()">Изменить аватар</button>
+            <input type="file" id="avatar-input" hidden>
+        </div>
+
+        <!-- Правая часть - информация и форма -->
+        <div class="info-section">
+            <div class="user-info">
+                <h2>Личные данные</h2>
+                <div class="user-field">
+                    <label>ФИО</label>
+                    <input type="text" id="username" readonly>
+                </div>
+                <div class="user-field">
+                    <label>Email</label>
+                    <input type="email" id="email" readonly>
+                </div>
+                <div class="user-field">
+                    <label>Телефон</label>
+                    <input type="tel" id="phone" readonly>
+                </div>
+            </div>
+
+        <div class="profile-sections">
+        <!-- Секция корзины -->
+            <div class="profile-section">
+                    <h3>Моя корзина</h3>
+                    <div class="section-content">
+                        <p>Товаров в корзине: <span id="cartCount">0</span></p>
+                        <a href="cart.html" class="section-link">Перейти в корзину →</a>
+                    </div>
+                </div>
+            
+                <!-- Секция отзывов -->
+                <div class="profile-section">
+            <h3>Мои отзывы</h3>
+            <div class="section-content">
+                <p>Оставлено отзывов: <span id="reviewsCount">0</span></p>
+                <a href="reviews.html" class="section-link">Посмотреть все →</a>
+            </div>
+            <div class="add-review-section">
+            <h3>Оставить новый отзыв</h3>
+            <form id="addReviewForm" onsubmit="handleReviewSubmit(event)">
+               <div class="form-group">
+                   <label>Выберите товар:</label>
+                   <select id="reviewProduct" class="form-control" required>
+                       <option value="">-- Выберите товар --</option>
+                       <!-- Опции будут добавлены через JS -->
+                   </select>
+               </div>
+
+               <div class="form-group">
+                   <label>Оценка:</label>
+                   <div class="rating-stars">
+                       <span class="star" data-value="1">☆</span>
+                       <span class="star" data-value="2">☆</span>
+                       <span class="star" data-value="3">☆</span>
+                       <span class="star" data-value="4">☆</span>
+                       <span class="star" data-value="5">☆</span>
+                   </div>
+                   <input type="hidden" id="ratingValue" required>
+               </div>
+
+               <div class="form-group">
+                   <label>Текст отзыва:</label>
+                   <textarea id="reviewText" rows="4" class="form-control" required></textarea>
+               </div>
+
+               <button type="submit" class="btn-primary">Отправить отзыв</button>
+               <div class="error-message" id="reviewError"></div>
+            </form>
+        </div>
+        </div>
+    </div>
+
+            <!-- Форма смены пароля -->
+            <form class="password-form" onsubmit="handlePasswordChange(event)">
+                <h3>Смена пароля</h3>
+                <div class="form-group">
+                    <label>Текущий пароль</label>
+                    <input type="password" id="current-password" required>
+                </div>
+                <div class="form-group">
+                    <label>Новый пароль</label>
+                    <input type="password" id="new-password" required>
+                </div>
+                <div class="form-group">
+                    <label>Подтвердите новый пароль</label>
+                    <input type="password" id="confirm-password" required>
+                </div>
+                <button type="submit">Сохранить изменения</button>
+                <div class="error-message" id="password-error"></div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-contacts">
+                <h3>КОНТАКТЫ</h3>
+                <p>Телефон: +7 (950) 066-80-53</p>
+                <p>Email: ikonom@mail.ru</p>
+                <p>Адрес: г. Максималь, ул. Максимала, 22</p>
+            </div>
+
+            <div class="footer-navigation">
+                <h3>НАВИГАЦИЯ</h3>
+                <ul>
+                    <li><a href="uslugi.html">Наши услуги</a></li>
+                    <li><a href="#">Наши работы</a></li>
+                    <li><a href="about.html">О компании</a></li>
+                    <li><a href="dostavka.html">Доставка и оплата</a></li>
+                    <li><a href="faq.html">Популярные вопросы</a></li>
+                    <li><a href="#">Контакты</a></li>
+                    <li><a href="politika-konfidencialnosti.html">Политика конфиденциальности</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-catalog">
+                <h3>КАТАЛОГ</h3>
+                <ul>
+                    <li><a href="#">Кондиционеры</a></li>
+                    <li><a href="#">Вентиляции</a></li>
+                    <li><a href="#">Арматура</a></li>
+                    <li><a href="#">Детали трубопроводов</a></li>
+                </ul>
+            </div>
+        </div>
+</footer>
+
+
+
+    <script>
+        // Загрузка данных пользователя
+        //async function loadAdditionalData() {
+        //try {
+        //    const token = localStorage.getItem('authToken');
+        //    
+        //    // Загрузка данных корзины
+        //    const cartResponse = await fetch('/api/v1/cart/', {
+        //        headers: { 'Authorization': `Bearer ${token}` }
+        //    });
+        //    const cartData = await cartResponse.json();
+        //    document.getElementById('cartCount').textContent = cartData.items.length;
+//
+        //    // Загрузка данных отзывов
+        //    const reviewsResponse = await fetch('/api/v1/reviews/my/', {
+        //        headers: { 'Authorization': `Bearer ${token}` }
+        //    });
+        //    const reviewsData = await reviewsResponse.json();
+        //    document.getElementById('reviewsCount').textContent = reviewsData.length;
+//
+        //} catch (error) {
+        //    console.error('Ошибка загрузки дополнительных данных:', error);
+        //}
+//
+        //// Обработка смены пароля
+        //async function handlePasswordChange(e) {
+        //    e.preventDefault();
+        //    
+        //    const formData = {
+        //        password: document.getElementById('current-password').value,
+        //        new_password: document.getElementById('new-password').value,
+        //        current_password: document.getElementById('confirm-password').value
+        //    };
+//
+        //    // Валидация на клиенте
+        //    if (formData.new_password !== formData.current_password) {
+        //        showError('Пароли не совпадают');
+        //        return;
+        //    }
+//
+        //    try {
+        //        const token = localStorage.getItem('authToken');
+        //        const response = await fetch('http://127.0.0.1:8000/api/v1/customers/change-password/', {
+        //            method: 'POST',
+        //            headers: {
+        //                'Content-Type': 'application/json',
+        //                'Authorization': `Bearer ${token}`
+        //            },
+        //            body: JSON.stringify(formData)
+        //        });
+//
+        //        const data = await response.json();
+        //        
+        //        if (!response.ok) throw new Error(data.detail || 'Ошибка изменения пароля');
+        //        
+        //        alert('Пароль успешно изменен!');
+        //        document.getElementById('password-form').reset();
+        //        
+        //    } catch (error) {
+        //        showError(error.message);
+        //    }
+        //}
+//
+        //function showError(message) {
+        //    const errorElement = document.getElementById('password-error');
+        //    errorElement.textContent = message;
+        //    errorElement.style.display = 'block';
+        //    setTimeout(() => errorElement.style.display = 'none', 5000);
+        //}
+//
+        //// Загружаем данные при открытии страницы
+        //loadUserData();
+
+        async function loadPurchasedProducts() {
+        try {
+            const token = localStorage.getItem('authToken');
+            const response = await fetch('/api/v1/customers/me/orders', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const products = await response.json();
+            
+            const select = document.getElementById('reviewProduct');
+            products.forEach(product => {
+                const option = document.createElement('option');
+                option.value = product.id;
+                option.textContent = product.name;
+                select.appendChild(option);
+            });
+            
+        } catch (error) {
+            console.error('Ошибка загрузки товаров:', error);
+        }
+    }
+
+    // Инициализация звезд рейтинга
+    function initRatingStars() {
+        const stars = document.querySelectorAll('.star');
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const value = star.dataset.value;
+                stars.forEach((s, idx) => {
+                    s.classList.toggle('active', idx < value);
+                });
+                document.getElementById('ratingValue').value = value;
+            });
+        });
+    }
+
+    // Обработка отправки отзыва
+    async function handleReviewSubmit(e) {
+        e.preventDefault();
+        
+        const reviewData = {
+            product_id: document.getElementById('reviewProduct').value,
+            rating: document.getElementById('ratingValue').value,
+            text: document.getElementById('reviewText').value
+        };
+
+        try {
+            const token = localStorage.getItem('authToken');
+            const response = await fetch(`/api/v1/reviews/${reviewData.product_id}/create_reviews`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    rating: reviewData.rating,
+                    text: reviewData.text
+                })
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.detail);
+            }
+
+            // Очистка формы
+            document.getElementById('reviewText').value = '';
+            document.getElementById('ratingValue').value = '';
+            document.querySelectorAll('.star').forEach(s => s.classList.remove('active'));
+            
+            // Обновление списка отзывов
+            loadUserReviews();
+            
+        } catch (error) {
+            document.getElementById('reviewError').textContent = error.message;
+        }
+    }
+
+        let currentSlide = 0;
+        const sliderTrack = document.querySelector('.slider-track');
+        const slides = document.querySelectorAll('.slide');
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
+        }
+        function showCallbackForm() {
+            document.getElementById('xs_recall').style.display = 'inline-block';
+            document.getElementById('modalOverlay').style.display = 'block';
+        }
+
+        function hideCallbackForm() {
+            document.getElementById('xs_recall').style.display = 'none';
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+
+        function updateSlider() {
+            sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+
+         // Обработчик для ручного управления меню
+        document.querySelectorAll('.dropbtn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const menu = this.nextElementSibling;
+                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+        // Закрытие при клике вне формы
+        document.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('modalOverlay')) {
+                hideCallbackForm();
+            }
+        });
+
+        // Маска для телефона
+        document.querySelector('input[name="xs_phone"]').addEventListener('input', function(e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+            e.target.value = '+7' + (x[2] ? ' (' + x[2] : '') + (x[3] ? ') ' + x[3] : '') + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
+        });
+    </script>
+</body>
+</html>

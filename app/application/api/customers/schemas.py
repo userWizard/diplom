@@ -7,7 +7,7 @@ from app.customers.models import Customers
 class RegisterSchema(BaseModel):
     """Валидация формы данных регистрации."""
     username: str
-    email: EmailStr
+    email: str
     phone_number: str
     password: str
     
@@ -43,9 +43,25 @@ class RegisterSchema(BaseModel):
         
         return v
 
+
+class RegisterOutSchema(BaseModel):
+    id: int
+    username: str
+    email: str
+    phone_number: str
+    password: str
+
+
+class RegisterInSchema(BaseModel):
+    username: str
+    email: str
+    phone_number: str
+    password: str
+
+
 class LoginSchema(BaseModel):
     """Валидация формы данных авторизации."""
-    email: EmailStr
+    email: str
     password: str
     
     @field_validator('password')
@@ -54,21 +70,26 @@ class LoginSchema(BaseModel):
             raise ValueError('Пароль не может быть пустым')
         return v
 
-class CustomerOutSchema(BaseModel):
-    class Config:
-        model = Customers
-        model_fields = ['id', 'username', 'email', 'phone_number']
+class LoginOutSchema(BaseModel):
+    id: int
+    username: str
+    email: str
 
-class AuthOutSchema(BaseModel):
-    user: CustomerOutSchema
+class LoginInSchema(BaseModel):
+    email: str
+    password: str
+
 
 class MeOutShema(BaseModel):
     id: int
     username: str
     email: str
+    phone_number: str
+    password: str
 
 
 class ChangePasswordSchema(BaseModel):
+    """Валидация формы данных смены пароля."""
     password: str
     new_password: str
     current_password: str
@@ -94,5 +115,18 @@ class ChangePasswordSchema(BaseModel):
         if not re.search(special_chars, v):
             raise ValueError('Новый пароль должен содержать хотя бы один специальный символ: !@#$%^&*(),.?\":{}|<>')
         return v
+
+
+class ChangePasswordOutSchema(BaseModel):
+    id: MeOutShema
+    password: str
+    new_password: str
+    current_password: str
+
+ 
+class ChangePasswordInSchema(BaseModel):
+    password: str
+    new_password: str
+    current_password: str
 
     

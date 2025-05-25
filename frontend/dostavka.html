@@ -30,104 +30,74 @@
             margin-bottom: 1rem;
         }
 
-        .auth-links {
-            display: inline-flex;
-            gap: 20px;
-        }
-
-        .user-profile {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        #usernameLink {
-            color: #1e90ff;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        #usernameLink:hover {
-            text-decoration: underline;
-        }
-
-        .logout-btn {
-            background: none;
-            border: none;
-            color: #ff4444;
-            cursor: pointer;
-            padding: 0;
-            margin-left: 15px;
-            font-size: 14px;
-        }
-
-        .logout-btn:hover {
-            text-decoration: underline;
-        }
-
         header {
-            background-color: white;
-            padding: 20px;
-            position: relative;
-            z-index: 1000; /* Убедитесь, что header поверх других элементов */
+        background-color: white;
+        padding: 20px;
         }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 20px;
-        }
+    header {
+        background-color: white;
+        padding: 20px;
+        position: relative;
+        z-index: 1000; /* Убедитесь, что header поверх других элементов */
+    }
+    
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 20px;
+    }
+    
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex: 1;
+    }
+    
+    .header-right-group {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
 
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex: 1;
-        }
 
-        .header-right-group {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
+    .header-text {
+       color: #333;
+       font-size: 14px;
+       opacity: 0.8;
+       font-weight: 300;
+       line-height: 1.4;
+       margin-left: 1px; /* Добавил отступ слева вместо gap */
+       max-width: 220px; /* Фиксированная ширина для текста */
+    }
 
-        .header-text {
-           color: #333;
-           font-size: 14px;
-           opacity: 0.8;
-           font-weight: 300;
-           line-height: 1.4;
-           margin-left: 1px; 
-           max-width: 220px; 
-        }
-
-        @media (max-width: 1024px) {
-            .header-content {
-                flex-wrap: wrap;
-                gap: 15px;
-            }
-
-            .header-left {
-                flex: 100%;
-                justify-content: center;
-                text-align: center;
-            }
-
-            .header-contacts {
-                margin-left: 0;
-                padding-right: 0;
-                text-align: center;
-            }
-
-            .header-right {
-                justify-content: center;
-                width: 100%;
-            }
-        }
-
+@media (max-width: 1024px) {
+    .header-content {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .header-left {
+        flex: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .header-contacts {
+        margin-left: 0;
+        padding-right: 0;
+        text-align: center;
+    }
+    
+    .header-right {
+        justify-content: center;
+        width: 100%;
+    }
+}
     .phone-link {
         color: #1e90ff;
         text-decoration: none;
@@ -171,7 +141,7 @@
         padding: 15px 0;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-
+    
     nav ul {
         list-style: none;
         display: flex;
@@ -181,11 +151,11 @@
         padding: 0;
         max-width: 1200px;
     }
-
+    
     nav li {
         position: relative;
     }
-
+    
     nav a {
         text-decoration: none;
         font-size: 18px;
@@ -193,65 +163,131 @@
         padding: 8px 12px;
         transition: all 0.3s ease;
     }
-
+    
     nav a:hover {
         color: #1e90ff;
         transform: translateY(-2px);
     }
 
-    @media (max-width: 768px) {
-        nav ul {
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 0 10px;
+@media (max-width: 768px) {
+    nav ul {
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    nav a {
+        font-size: 16px;
+        padding: 6px 10px;
+    }
+}
+
+        /* Основной контейнер */
+        .xs_content_container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
-        nav a {
+        .xs_breadcramb {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .xs_breadcramb a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+
+        .delimiter {
+            margin: 0 8px;
+            color: #999;
+        }
+
+        /* Заголовок */
+        .page_content h1 {
+            color: #1e90ff;
+            font-size: 32px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #1e90ff;
+        }
+
+        /* Основной текст */
+        .page_content p {
             font-size: 16px;
-            padding: 6px 10px;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 25px;
         }
-    }
 
-    .slider-container {
-        margin: 0; /* Убираем верхний и нижний отступы */
-        position: relative;
-        z-index: 999; /* Слайдер под навигацией */
-    }
+        /* Нумерованные списки */
+        .wp-block-list {
+            counter-reset: section;
+            margin-left: 30px;
+            margin-bottom: 35px;
+        }
 
-       .slider-track {
-           display: flex;
-           transition: 0.3s;
-       }
+        .wp-block-list li {
+            position: relative;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
 
-       .slide {
-           min-width: 100%;
-           height: 470px;
-           background-size: cover;
-           background-position: center;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           flex-direction: column;
-       }
+        .wp-block-list strong {
+            color: #1e90ff;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
 
-       .slide-content {
-           background: rgba(255, 255, 255, 0.9);
-           padding: 30px;
-           text-align: center;
-           border-radius: 10px;
-       }
+        /* Таблица контактов */
+        .contacts-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
 
-       .btn {
-           background-color: #1e90ff;
-           color: white;
-           padding: 10px 30px;
-           text-decoration: none;
-           border-radius: 5px;
-           margin-top: 15px;
-           display: inline-block;
-           font-weight: 600;
-           letter-spacing: 0.5px;
-       }
+        .contacts-table td {
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+
+        .contacts-table h3 {
+            color: #1e90ff;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .page_content h1 {
+                font-size: 28px;
+            }
+
+            .wp-block-list {
+                margin-left: 15px;
+            }
+
+            .wp-block-list li {
+                padding-left: 30px;
+                font-size: 15px;
+            }
+
+            .contacts-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+    
 
         footer {
             background: #ffffff;
@@ -534,12 +570,12 @@
         }
     </style>
 </head>
-<body>
+
 <header>
     <div class="header-content">
         <!-- Левая группа -->
         <div class="header-left">
-            <a href="#" class="logo-link">
+            <a href="/" class="logo-link">
                 <img src="images/logo.png" alt="Логотип" class="logo">
             </a>
             <div class="header-text">Вентиляция, кондиционирование,<br>
@@ -553,15 +589,8 @@
                 <div class="callback-link" onclick="showCallbackForm()">заказать звонок</div>
             </div>
             <div class="header-right">
-                <a href="#">Корзина</a>
-                <div class="auth-links" id="authLinks">
-                    <a href="registration.html">Регистрация</a>
-                    <a href="authorization.html">Авторизация</a>
-                </div>
-                <div class="user-profile" id="userProfile" style="display: none;">
-                    <a href="/profile" id="usernameLink"></a>
-                     <button class="logout-btn" onclick="logout()">Выйти</button>
-                </div>
+                <a href="#">Корзина (0)</a>
+                <a href="#">Профиль</a>
             </div>
         </div>
     </div>
@@ -589,14 +618,14 @@
             <li class="dropdown">
                 <a href="products.html" class="dropbtn">Каталог товаров</a>
                 <div class="dropdown-content">
-                    <a href="#">Каркасно-панельные установки</a>
-                    <a href="#">Осушители воздуха</a>
-                    <a href="#">Система пылеудаления</a>
-                    <a href="#">Система увлажнения воздуха</a>
-                    <a href="#">Кондиционеры</a>
-                    <a href="#">Вентиляция</a>
-                    <a href="#">Арматура</a>
-                    <a href="#">Детали трубопроводов</a>
+                    <a href="catalog.html#frame-panel">Каркасно-панельные установки</a>
+                    <a href="catalog.html#dryers">Осушители воздуха</a>
+                    <a href="catalog.html#dust-removal">Система пылеудаления</a>
+                    <a href="catalog.html#humidification">Система увлажнения воздуха</a>
+                    <a href="catalog.html#conditioners">Кондиционеры</a>
+                    <a href="catalog.html#ventilation">Вентиляция</a>
+                    <a href="catalog.html#armature">Арматура</a>
+                    <a href="catalog.html#pipeline">Детали трубопроводов</a>
                 </div>
             </li>
             <li><a href="uslygi.html">Услуги</a></li>
@@ -607,96 +636,47 @@
         </ul>
     </nav>
 
-    <div class="slider-container">
-        <div class="slider-track">
-            <div class="slide" style="background-image: url('images/slide1.jpg')">
-                <div class="slide-content">
-                    <h2>Вентиляция на производстве</h2>
-                    <a href="#" class="btn">Подробнее</a>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('images/slide2.jpg')">
-                <div class="slide-content">
-                    <h2>Вентиляция в бассейне</h2>
-                    <a href="#" class="btn">Подробнее</a>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('images/slide4.jpg')">
-                <div class="slide-content">
-                    <h2>Вентиляция в квартире</h2>
-                    <a href="#" class="btn">Подробнее</a>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('images/slide3.jpg')">
-                <div class="slide-content">
-                    <h2>Вентиляция в частном доме</h2>
-                    <a href="#" class="btn">Подробнее</a>
-                </div>
-            </div>
+     <div class="xs_content_container"><div class="container">
+        <div class="go-hide">
+        <nav class="xs_breadcramb go-hide__inner" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+            <span itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                <a itemprop="item" href="index.html"><span itemprop="name">Главная</span>
+                </a>
+            </span>
+            <span class="delimiter">
+            </span>Доставка и оплата</nav>
         </div>
+        <div class="page_content">
+                <h1>Доставка и оплата</h1>
+                <p>Наша компания осуществляет продажу и доставку вентиляционного оборудования, а также комплектующих и сопутствующей данному оборудованию продукции. Стандартный срок доставки товаров составляет 1-2 дня после заказа, как в будние, так и рабочие дни. В назначенный срок курьер заблаговременно перед выездом свяжется с вами.<br><br>
+                    <strong>Возможны следующие варианты осуществления доставки:</strong>
+                </p>
+                <ol class="wp-block-list">
+                    <li>
+                        <strong>Доставка + монтаж
+                        </strong>. В этом случае наши специалисты помогут установить оборудование. Стоимость составляет 1000 рублей при любом заказе.
+                    </li>
+
+                <li>
+                    <strong>Курьерская доставка</strong>. Действует в Нижнем Новгороде и области. В пределах города доставка бесплатная при общей стоимости заказа более 10000 руб. Доставка по области дополнительно оплачивается по договоренности в зависимости от удаленности населенного пункта.</li>
+
+                <li>
+                    <strong>Самовывоз</strong>&nbsp;из офиса. Бесплатно, время — по договоренности. Адрес: г. Нижний Новгород, ул. Родионова д. 22.
+                </li>
+            </ol>
+        <p><strong>Оплата возможна следующими способами:</strong></p>
+        <ol class="wp-block-list">
+            <li>Оплата для юридических лиц по расчетному счету организации.</li>
+
+            <li>Оплата наличными после получения продукции и возможного проведения монтажных работ.
+            </li>
+        </ol>
+        <p></p>
     </div>
-    <div class="services-section">
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-image" style="background-image: url('images/serv-1.jpg')"></div>
-                <div class="service-overlay">
-                    <h3 class="service-name">Проектирование систем вентиляции</h3>
-                </div>
-                <a href="#" class="full-link"></a>
-            </div>
+</div>
+</div>
 
-            <div class="service-card">
-                <div class="service-image" style="background-image: url('images/serv-2.jpg')"></div>
-                <div class="service-overlay">
-                    <h3 class="service-name">Монтаж систем вентиляции</h3>
-                </div>
-                <a href="#" class="full-link"></a>
-            </div>
-
-            <!-- Добавьте остальные услуги по аналогии -->
-            <div class="service-card">
-                <div class="service-image" style="background-image: url('images/serv-3.jpg')"></div>
-                <div class="service-overlay">
-                    <h3 class="service-name">Установка кондиционеров</h3>
-                </div>
-                <a href="#" class="full-link"></a>
-            </div>
-
-            <div class="service-card">
-                <div class="service-image" style="background-image: url('images/serv-4.jpg')"></div>
-                <div class="service-overlay">
-                    <h3 class="service-name">Обслуживание кондиционеров</h3>
-                </div>
-                <a href="#" class="full-link"></a>
-            </div>
-
-            <div class="service-card">
-                <div class="service-image" style="background-image: url('images/serv-5.jpg')"></div>
-                <div class="service-overlay">
-                    <h3 class="service-name">Монтаж дымоходов</h3>
-                </div>
-                <a href="#" class="full-link"></a>
-            </div>
-
-            <div class="service-card">
-                <div class="service-image" style="background-image: url('images/serv-6.jpg')"></div>
-                <div class="service-overlay">
-                    <h3 class="service-name">Реконструкция и капитальный ремонт</h3>
-                </div>
-                <a href="#" class="full-link"></a>
-            </div>
-
-            <div class="service-card">
-                <div class="service-image" style="background-image: url('images/serv-7.jpg')"></div>
-                <div class="service-overlay">
-                    <h3 class="service-name">Монтаж чиллера</h3>
-                </div>
-                <a href="#" class="full-link"></a>
-            </div>
-        </div>
-    </div>
-
-    <footer>
+<footer>
         <div class="footer-content">
             <div class="footer-contacts">
                 <h3>КОНТАКТЫ</h3>
@@ -708,7 +688,7 @@
             <div class="footer-navigation">
                 <h3>НАВИГАЦИЯ</h3>
                 <ul>
-                    <li><a href="uslygi.html">Наши услуги</a></li>
+                    <li><a href="uslugi.html">Наши услуги</a></li>
                     <li><a href="#">Наши работы</a></li>
                     <li><a href="about.html">О компании</a></li>
                     <li><a href="dostavka.html">Доставка и оплата</a></li>
@@ -729,18 +709,7 @@
             </div>
         </div>
 
-        <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
-                <path d="M12 19V5M5 12l7-7 7 7"/>
-            </svg>
-        </div>
-
-    <div class="footer-bottom">
-        <p>2025 © Лоскутов Никита Витальевич</p>
-    </div>
-    </footer>
-
-    <script>
+            <script>
         let currentSlide = 0;
         const sliderTrack = document.querySelector('.slider-track');
         const slides = document.querySelectorAll('.slide');
@@ -761,92 +730,6 @@
 
         function updateSlider() {
             sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-        }
-
-        document.addEventListener('DOMContentLoaded', async () => {
-            const token = localStorage.getItem('authToken');
-            if (token) {
-                try {
-                    const response = await fetch('http://127.0.0.1:8000/api/v1/customers/me', {
-                        headers: {
-                            'Authorization': `Bearer ${token}`
-                        }
-                    });
-
-                    if (response.status === 401) {
-                        // Токен невалидный - принудительный выход
-                        localStorage.removeItem('authToken');
-                        updateHeader(null);
-                        return;
-                    }
-
-                    if (response.ok) {
-                        const userData = await response.json();
-                        updateHeader(userData);
-                    }
-                } catch (error) {
-                    console.error('Ошибка проверки авторизации:', error);
-                }
-            }
-        });
-
-        function updateHeader(userData) {
-            const authLinks = document.getElementById('authLinks');
-            const userProfile = document.getElementById('userProfile');
-            const usernameLink = document.getElementById('usernameLink');
-
-            if (userData) {
-                authLinks.style.display = 'none';
-                userProfile.style.display = 'block';
-                usernameLink.textContent = userData.username;
-            } else {
-                authLinks.style.display = 'block';
-                userProfile.style.display = 'none';
-            }
-        }
-
-        async function fetchUserData() {
-            try {
-                const token = localStorage.getItem('authToken');
-                const response = await fetch('http://127.0.0.1:8000/api/v1/customers/me', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                return await response.json();
-            } catch (error) {
-                console.error('Ошибка получения данных:', error);
-            }
-        }
-
-        async function logout() {
-            const token = localStorage.getItem('authToken');
-
-            try {
-                const response = await fetch('http://127.0.0.1:8000/api/v1/customers/logout/', {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
-            
-                if (!response.ok) {
-                    throw new Error('Ошибка выхода');
-                }
-            
-                // Всегда очищаем данные на клиенте, даже если запрос не удался
-                localStorage.removeItem('authToken');
-                updateHeader(null);
-                window.location.href = 'index.html';
-            
-            } catch (error) {
-                console.error('Ошибка при выходе:', error);
-                // Все равно очищаем данные на клиенте
-                localStorage.removeItem('authToken');
-                updateHeader(null);
-                window.location.href = 'index.html';
-            }
         }
 
         // Автопереключение слайдов каждые 5 секунд

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <style>
+        .auth-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 2px solid #ddd;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            border-color: #1e90ff;
+            color: #1e90ff;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #1e90ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #0066cc;
+        }
+
+        .error-message {
+            color: #ff4444;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .success-message {
+            color: #00C851;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('register')">Регистрация</div>
+        </div>
+
+        <!-- Форма регистрации -->
+        <form id="registerForm" class="auth-form" onsubmit="handleRegister(event)">
+            <div class="form-group">
+                <label>ФИО:</label>
+                <input type="text" id="fullName" required>
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label>Телефон:</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label>Пароль:</label>
+                <input type="password" id="password" minlength="6" required>
+            </div>
+            <button type="submit">Зарегистрироваться</button>
+            <div class="error-message" id="registerError"></div>
+            <div class="success-message" id="registerSuccess"></div>
+        </form>
+    </div>
+
+    <script>
+        // Обработка регистрации
+       async function handleRegister(e) {
+        e.preventDefault();
+        const formData = {
+            username: document.getElementById('fullName').value,
+            email: document.getElementById('email').value,
+            phone_number: document.getElementById('phone').value,
+            password: document.getElementById('password').value
+        };
+
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/v1/customers/register/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.detail || 'Ошибка регистрации');
+            }
+            
+            if(response.ok) {
+                // Автоматический вход после регистрации
+                const loginResponse = await fetch('http://127.0.0.1:8000/api/v1/customers/login/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: formData.email,
+                        password: formData.password
+                    })
+                });
+
+                if(loginResponse.ok) {
+                    localStorage.setItem('authToken', data.token);
+                    const userData = await fetchUserData();
+                    updateHeader(userData);
+                    window.location.href = 'index.html';
+                } else {
+                    showError('registerError', 'Автоматический вход не удался');
+                }
+            } else {
+                showError('registerError', data.message);
+            }
+        } catch (error) {
+            showError('registerError', 'Ошибка подключения к серверу');
+        }
+    }
+
+        // Вспомогательные функции
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            setTimeout(() => errorElement.style.display = 'none', 5000);
+        }
+
+        function showSuccess(elementId, message) {
+            const successElement = document.getElementById(elementId);
+            successElement.textContent = message;
+            successElement.style.display = 'block';
+            setTimeout(() => successElement.style.display = 'none', 5000);
+        }
+    </script>
+</body>
+</html>
