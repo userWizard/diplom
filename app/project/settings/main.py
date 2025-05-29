@@ -23,7 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "corsheaders",
+    'corsheaders',
 
     'app.customers.apps.CustomersConfig',
     'app.products.apps.ProductsConfig',

@@ -45,6 +45,7 @@ def get_products_list(request: HttpRequest) -> ProductOutSchema:
         logger.error(f"Server not found: {str(e)}", exc_info=True)
         raise HttpError(500, f'Оишбка сервера {str(e)}')
 
+
 @router.get(
     'products_by_name/',
     response=List[ProductInSchema],

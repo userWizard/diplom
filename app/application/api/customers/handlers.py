@@ -148,7 +148,6 @@ def change_password(request: HttpRequest, payload: ChangePasswordSchema) -> Chan
         if not user.is_authenticated:
             raise HttpError(401, "Требуется авторизация")
         
-        # Проверка старого пароля
         if not payload.password:
             logger.warning(f"Invalid old password for {user.email}")
             raise HttpError(400, "Неверный текущий пароль")
@@ -158,7 +157,6 @@ def change_password(request: HttpRequest, payload: ChangePasswordSchema) -> Chan
             logger.warning(f"The passwords don't match. Make sure that the data is entered correctly: {payload.new_password}:{payload.current_password}")
             raise HttpError('Пароли не совпадают. Повторите попытку еще раз!')
         
-        # Установка нового пароля
         user.set_password(payload.new_password)
         user.save()
         

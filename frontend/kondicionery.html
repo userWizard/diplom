@@ -3,34 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вентиляция, кондиционирование, отопление и холодоснабжение</title>
+    <title>Каталог товаров - Вентиляция РФ</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Futura PT', sans-serif;
-        }
-
-        body {
-            background-color: #f0f8ff;
-            color: #3f3f3f;
-            font-size: 16px;
-            line-height: 150%;
-            cursor: default;
-            text-align: left;
-            min-width: 100%;
-            background: #fff;
-            letter-spacing: .3px;
-        }
 
         h1, h2, h3 {
             font-weight: 500;
             letter-spacing: -0.5px;
             margin-bottom: 1rem;
-        }
+    }
 
-        header {
+    header {
         background-color: white;
         padding: 20px;
         }
@@ -74,13 +56,6 @@
        margin-left: 1px; /* Добавил отступ слева вместо gap */
        max-width: 220px; /* Фиксированная ширина для текста */
     }
-
-@media (max-width: 1024px) {
-    .header-content {
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-    
     .header-left {
         flex: 100%;
         justify-content: center;
@@ -97,7 +72,7 @@
         justify-content: center;
         width: 100%;
     }
-}
+
     .phone-link {
         color: #1e90ff;
         text-decoration: none;
@@ -169,214 +144,7 @@
         transform: translateY(-2px);
     }
 
-@media (max-width: 768px) {
-    nav ul {
-        flex-wrap: wrap;
-        gap: 15px;
-        padding: 0 10px;
-    }
-    
-    nav a {
-        font-size: 16px;
-        padding: 6px 10px;
-    }
-}
-
-        /* Основной контейнер */
-        .xs_content_container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .xs_breadcramb {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .xs_breadcramb a {
-            color: #1e90ff;
-            text-decoration: none;
-        }
-
-        .delimiter {
-            margin: 0 8px;
-            color: #999;
-        }
-
-        /* Заголовок */
-        .page_content h1 {
-            color: #1e90ff;
-            font-size: 32px;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #1e90ff;
-        }
-
-        /* Основной текст */
-        .page_content p {
-            font-size: 16px;
-            line-height: 1.7;
-            color: #333;
-            margin-bottom: 25px;
-        }
-
-        /* Нумерованные списки */
-        .wp-block-list {
-            counter-reset: section;
-            margin-left: 30px;
-            margin-bottom: 35px;
-        }
-
-        .wp-block-list li {
-            position: relative;
-            margin-bottom: 20px;
-            padding-left: 10px;
-            font-size: 16px;
-            line-height: 1.5;
-        }
-
-        .wp-block-list strong {
-            color: #1e90ff;
-            display: block;
-            margin-bottom: 8px;
-            font-size: 18px;
-        }
-
-        /* Таблица контактов */
-        .contacts-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 40px 0;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .contacts-table td {
-            padding: 20px;
-            border: 1px solid #e0e0e0;
-            vertical-align: top;
-        }
-
-        .contacts-table h3 {
-            color: #1e90ff;
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            .page_content h1 {
-                font-size: 28px;
-            }
-
-            .wp-block-list {
-                margin-left: 15px;
-            }
-
-            .wp-block-list li {
-                padding-left: 30px;
-                font-size: 15px;
-            }
-
-            .contacts-table {
-                display: block;
-                overflow-x: auto;
-            }
-        }
-
-    
-
-        footer {
-            background: #ffffff;
-            padding: 40px 20px;
-            color: #000000;
-            border-top: 2px solid #eeeeee;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start; /* Выравнивание по верхнему краю */
-            gap: 30px;
-            padding-bottom: 40px;
-        }
-
-        .footer-contacts,
-        .footer-navigation,
-        .footer-catalog {
-            flex: 1;
-            padding: 0 15px;
-            text-align: left; /* Единое выравнивание текста */
-        }
-
-
-         ul {
-            list-style: none;
-        } 
-
-         li {
-            margin-bottom: 10px;
-            line-height: 1.4;
-        } 
-
-        a {
-            color: #000000;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #ddd;
-            padding-top: 20px;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        @media (max-width: 768px) {
-            .footer-content {
-                flex-direction: column;
-                gap: 30px;
-            }
-
-            .footer-contacts,
-            .footer-navigation,
-            .footer-catalog {
-                text-align: center;
-                padding: 0;
-                width: 100%;
-            }
-        }
-
-        /* Стили для кнопки "Наверх" */
-        .scroll-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #3f3f3f;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0.7;
-            transition: 0.3s;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .scroll-top:hover {
-            opacity: 1;
-            transform: translateY(-3px);
-        }
-
-       /* Выпадающий список */
-        .dropdown {
+     .dropdown {
            position: relative;
            display: inline-block;
        }
@@ -544,6 +312,30 @@
             border-radius: 5px;
         }
 
+        .xs_content_container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .xs_breadcramb {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .xs_breadcramb a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+
+        .delimiter {
+            margin: 0 8px;
+            color: #999;
+        }
+
         .policy {
             margin: 15px 0;
             font-size: 12px;
@@ -568,14 +360,233 @@
             cursor: pointer;
             font-size: 20px;
         }
+
+
+.product-grid-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    justify-content: center;
+}
+
+/* Стили карточек */
+.product-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.card-img {
+    width: 100%;
+    height: 240px;
+    object-fit: contain;
+    padding: 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #eee;
+}
+
+.card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title {
+    font-size: 16px;
+    color: #2d2d2d;
+    margin: 0 0 15px;
+    line-height: 1.4;
+    min-height: 44px;
+}
+
+.price {
+    color: #1e90ff;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 10px 0 20px;
+}
+
+.cart-button {
+    background: #1e90ff;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: auto;
+}
+
+.cart-button:hover {
+    background: #1673d1;
+    transform: translateY(-2px);
+}
+
+.details-link {
+    display: block;
+    text-align: center;
+    color: #666;
+    font-size: 13px;
+    margin-top: 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.details-link:hover {
+    color: #1e90ff;
+}
+
+/* Пагинация */
+.pagination-wrapper {
+    margin: 50px 0 30px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+.pagination {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.page-link {
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 8px;
+    color: #666;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.page-item.active .page-link {
+    background: #1e90ff;
+    color: white;
+    border-color: #1e90ff;
+}
+
+.page-link:hover {
+    border-color: #1e90ff;
+    color: #1e90ff;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-img {
+        height: 200px;
+    }
+}
+
+        footer {
+            background: #ffffff;
+            padding: 40px 20px;
+            color: #000000;
+            border-top: 2px solid #eeeeee;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* Выравнивание по верхнему краю */
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        .footer-contacts,
+        .footer-navigation,
+        .footer-catalog {
+            flex: 1;
+            padding: 0 15px;
+            text-align: left; /* Единое выравнивание текста */
+        }
+
+
+         ul {
+            list-style: none;
+        } 
+
+         li {
+            margin-bottom: 10px;
+            line-height: 1.4;
+        } 
+
+        a {
+            color: #000000;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-contacts,
+            .footer-navigation,
+            .footer-catalog {
+                text-align: center;
+                padding: 0;
+                width: 100%;
+            }
+        }
     </style>
 </head>
+<body>
 
+<!-- Шапка -->
 <header>
     <div class="header-content">
         <!-- Левая группа -->
         <div class="header-left">
-            <a href="" class="logo-link">
+            <a href="/" class="logo-link">
                 <img src="images/logo.png" alt="Логотип" class="logo">
             </a>
             <div class="header-text">Вентиляция, кондиционирование,<br>
@@ -595,7 +606,7 @@
         </div>
     </div>
 </header>
-    <!-- Модальное окно -->
+<!-- Модальное окно -->
     <div class="modal-overlay" id="modalOverlay" onclick="hideCallbackForm()"></div>
     <div id="xs_recall">
         <div class="title">Заказ обратного звонка</div>
@@ -636,47 +647,84 @@
         </ul>
     </nav>
 
-     <div class="xs_content_container"><div class="container">
+    
+<!-- Основной контент -->
+    <div class="xs_content_container">
+    <div class="container">
         <div class="go-hide">
-        <nav class="xs_breadcramb go-hide__inner" itemscope="" itemtype="http://schema.org/BreadcrumbList">
-            <span itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                <a itemprop="item" href="index.html"><span itemprop="name">Главная</span>
-                </a>
-            </span>
-            <span class="delimiter">
-            </span>Доставка и оплата</nav>
+            <nav class="xs_breadcramb go-hide__inner" itemscope itemtype="http://schema.org/BreadcrumbList">
+                <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="index.html">
+                        <span itemprop="name">Главная</span>
+                    </a>
+                </span>
+                <span class="delimiter"></span>
+                <span>Кондиционер</span>
+            </nav>
         </div>
-        <div class="page_content">
-                <h1>Доставка и оплата</h1>
-                <p>Наша компания осуществляет продажу и доставку вентиляционного оборудования, а также комплектующих и сопутствующей данному оборудованию продукции. Стандартный срок доставки товаров составляет 1-2 дня после заказа, как в будние, так и рабочие дни. В назначенный срок курьер заблаговременно перед выездом свяжется с вами.<br><br>
-                    <strong>Возможны следующие варианты осуществления доставки:</strong>
-                </p>
-                <ol class="wp-block-list">
-                    <li>
-                        <strong>Доставка + монтаж
-                        </strong>. В этом случае наши специалисты помогут установить оборудование. Стоимость составляет 1000 рублей при любом заказе.
-                    </li>
 
-                <li>
-                    <strong>Курьерская доставка</strong>. Действует в Нижнем Новгороде и области. В пределах города доставка бесплатная при общей стоимости заказа более 10000 руб. Доставка по области дополнительно оплачивается по договоренности в зависимости от удаленности населенного пункта.</li>
+        <!-- Основной контент -->
+        <div class="product-grid-container">
+            <div class="product-grid">
+                <!-- Карточки товаров (все внутри одного контейнера) -->
+                <div class="product-card">
+                    <img src="images/kondicionery/BALLU.jpg" class="card-img" alt="Кондиционер BALLU 1000">
+                    <div class="card-content">
+                        <h3 class="product-title">Кондиционер BALLU 1000</h3>
+                        <p class="price">32 490 ₽</p>
+                        <button class="cart-button">В корзину</button>
+                        <a href="product/1.html" class="details-link">Подробнее</a>
+                    </div>
+                </div>
 
-                <li>
-                    <strong>Самовывоз</strong>&nbsp;из офиса. Бесплатно, время — по договоренности. Адрес: г. Нижний Новгород, ул. Родионова д. 22.
-                </li>
-            </ol>
-        <p><strong>Оплата возможна следующими способами:</strong></p>
-        <ol class="wp-block-list">
-            <li>Оплата для юридических лиц по расчетному счету организации.</li>
+                <!-- Повторяющиеся карточки -->
+                <div class="product-card">
+                    <img src="images/kondicionery/BALLU4.jpg" class="card-img" alt="Кондиционер BALLU 1000">
+                    <div class="card-content">
+                        <h3 class="product-title">BALLU Сплит-система инверторного типа Platinum ERP DС Inverter Black Edition (R41) /BALLU BSPI-10HN1/BL/EU</h3>
+                        <p class="price">45 900 ₽</p>
+                        <button class="cart-button">В корзину</button>
+                        <a href="frontend/product/1.html" class="details-link">Подробнее</a>
+                    </div>
+                </div>
 
-            <li>Оплата наличными после получения продукции и возможного проведения монтажных работ.
-            </li>
-        </ol>
-        <p></p>
-    </div>
+                <div class="product-card">
+                    <img src="images/kondicionery/BALLU3.png" class="card-img" alt="Кондиционер BALLU 1000">
+                    <div class="card-content">
+                        <h3 class="product-title">BALLU Сплит-система инверторного типа ECO Smart DC Inverter (R32) / BSYI-18HN8/ES_21Y</h3>
+                        <p class="price">76 990 ₽</p>
+                        <button class="cart-button">В корзину</button>
+                        <a href="frontend/product/1.html" class="details-link">Подробнее</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="images/kondicionery/BALLU2.jpg" class="card-img" alt="Кондиционер BALLU 1000">
+                    <div class="card-content">
+                        <h3 class="product-title">BALLU Сплит-система инверторного типа Eco Edge DC inverter (R410a) / BSLI-07HN1/EE/EU_20Y</h3>
+                        <p class="price">33 900 ₽</p>
+                        <button class="cart-button">В корзину</button>
+                        <a href="frontend/product/1.html" class="details-link">Подробнее</a>
+                    </div>
+                </div>
+            </div> <!-- Закрытие .product-grid -->
+
+
+
+            <!-- Пагинация -->
+            <nav class="pagination-wrapper">
+                <ul class="pagination">
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                </ul>
+            </nav>
+        </div> <!-- Закрытие .product-grid-container -->
+    </div> <!-- Закрытие .container -->
 </div>
-</div>
 
-<footer>
+<!-- Футер -->
+    <footer>
         <div class="footer-content">
             <div class="footer-contacts">
                 <h3>КОНТАКТЫ</h3>
@@ -708,9 +756,24 @@
                 </ul>
             </div>
         </div>
+</footer>
 
-            <script>
-        let currentSlide = 0;
+<!-- Скрипты -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // Инициализация фильтров и корзины
+    document.addEventListener('DOMContentLoaded', function() {
+        // Логика для фильтрации товаров
+        const priceFilter = document.querySelector('.custom-range');
+        priceFilter.addEventListener('input', updatePriceFilter);
+        
+        function updatePriceFilter() {
+            // Логика фильтрации по цене
+        }
+    });
+
+     let currentSlide = 0;
         const sliderTrack = document.querySelector('.slider-track');
         const slides = document.querySelectorAll('.slide');
 
@@ -732,20 +795,8 @@
             sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
         }
 
-        // Автопереключение слайдов каждые 5 секунд
-        setInterval(nextSlide, 5000);
 
-        // Добавляем обработчик для закрытия меню при клике вне его области
-        document.addEventListener('click', function(event) {
-            const dropdowns = document.querySelectorAll('.dropdown');
-            dropdowns.forEach(dropdown => {
-                if (!dropdown.contains(event.target)) {
-                    dropdown.querySelector('.dropdown-content').style.display = 'none';
-                }
-            });
-        });
-
-        // Обработчик для ручного управления меню
+         // Обработчик для ручного управления меню
         document.querySelectorAll('.dropbtn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -766,6 +817,7 @@
             let x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
             e.target.value = '+7' + (x[2] ? ' (' + x[2] : '') + (x[3] ? ') ' + x[3] : '') + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
         });
-    </script>
+</script>
+
 </body>
 </html>
